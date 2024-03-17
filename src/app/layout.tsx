@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+        <AppRouterCacheProvider options={{ key: 'css' }}>
       <body className={'flex flex-col justify-center bg-white'}>
         <Header />
         {children}
         </body>
+     
+      </AppRouterCacheProvider>
     </html>
   );
 }
