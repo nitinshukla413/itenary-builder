@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import CustomButton from '../../components/button'
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -98,7 +98,7 @@ const Travel = () => {
                 />
               </div>
             </div>
-            <Button title="Continue"></Button>
+            <CustomButton title="Continue"></CustomButton>
           </div>
 
           <div className='w-[30%]'>
