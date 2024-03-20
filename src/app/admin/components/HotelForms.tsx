@@ -1,10 +1,30 @@
 import React from 'react';
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { TextField } from '@mui/material';
 const HotelForms = () => {
   return (
-    <div className="mx-auto max-w-lg">
-      <div className="flex justify-items-start items-start ml-10">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    // <div className='w-full shadow-lg '>
+    //   <div className="p-5 flex justify-between ">
+    //       <h3 className="text-2xl font-bold text-black">Add Hotel</h3>
+    //   </div>
+    //   <div className="p-2">
+  //   <TextField
+  //   id="outlined"
+  //   label="Name of City"
+  //   placeholder="Enter name of city"
+  //   className="w-full"
+  // />
+  // <TextField
+  //   id="outlined"
+  //   label="Name of Area"
+  //   placeholder="Enter name of area"
+  //   className="w-full"
+  // />
+    //   </div>
+    // </div>
+    <div className="w-full">
+      <div className="w-full flex justify-items-start items-start ml-10">
+        <form className="w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <p className="text-2xl font-bold mb-4">Hotel Form</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>

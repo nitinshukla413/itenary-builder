@@ -11,6 +11,7 @@ import CustomButton from "../../components/button";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
 import { typeOfFood, typeOfFuel, typeOfVehicle } from "@/utils/constants";
+import DropDown from "@/components/dropDown";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Travel = () => {
@@ -61,7 +62,7 @@ const Travel = () => {
     if (selectedDay < noOfDays?.length - 1)
       setSelectedDay(selectedDay + 1)
   }
-  const lastDay=selectedDay === noOfDays?.length - 1
+  const lastDay = selectedDay === noOfDays?.length - 1
   return (
     <div className="bg-white w-[100vw] flex justify-center  item-center">
       <div className="w-[80%]  max-md:w-full h-full p-10 max-md:p-2 max-md:p-2">
@@ -288,34 +289,18 @@ const Travel = () => {
                   <h2 className="text-black text-lg  font-bold wider mb-2">
                     Transportation Details
                   </h2>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Select Vehicle</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={selectedDayPackage['transport']['vehicleType']}
-                      label="Select Vehicle"
-                      onChange={(event) => {
-                        handleUpdatePackage({ key1: 'transport', key2: 'vehicleType', elem: event.target.value })
-                      }}
-                    >
-                      {[typeOfVehicle.Bike, typeOfVehicle.Car].map(veh => <MenuItem value={veh}>{veh}</MenuItem>)}
-                    </Select>
-                  </FormControl>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Fuel Type</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={selectedDayPackage['transport']['fuelType']}
-                      label="Fuel Type"
-                      onChange={(event) => {
-                        handleUpdatePackage({ key1: 'transport', key2: 'fuelType', elem: event.target.value })
-                      }}
-                    >
-                      {[typeOfFuel.Petrol, typeOfFuel.Diesel].map(veh => <MenuItem value={veh}>{veh}</MenuItem>)}
-                    </Select>
-                  </FormControl>
+                  <DropDown
+                    menuItems={[typeOfVehicle.Bike, typeOfVehicle.Car]}
+                    handleChange={(event) => {
+                      handleUpdatePackage({ key1: 'transport', key2: 'vehicleType', elem: event.target.value })
+                    }} title="Select Vehicle" label="Select Vehicle" value={selectedDayPackage['transport']['vehicleType']} />
+
+                  <DropDown
+                    menuItems={[typeOfFuel.Petrol, typeOfFuel.Diesel]}
+                    handleChange={(event) => {
+                      handleUpdatePackage({ key1: 'transport', key2: 'fuelType', elem: event.target.value })
+                    }}
+                    title="Fuel Type" label="Fuel Type" value={selectedDayPackage['transport']['fuelType']} />
                   <div className="flex justify-start items-center">
                     <Checkbox {...label} onChange={() => {
                       handleUpdatePackage({ key1: 'transport', key2: 'flightAvailable', elem: !selectedDayPackage['transport']['flightAvailable'] })
@@ -351,7 +336,7 @@ const Travel = () => {
                   {!lastDay && <div className="w-[35%]">
                     <CustomButton title="Save PDF" variant="secondary" onClick={() => { }}></CustomButton>
                   </div>}
-                  <div className={`w-[55%] ${!lastDay?'w-full':''}`}>    <CustomButton title="Continue" onClick={handleContinue}></CustomButton>
+                  <div className={`w-[55%] ${!lastDay ? 'w-full' : ''}`}>    <CustomButton title="Continue" onClick={handleContinue}></CustomButton>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 export const link = {
     'Home': '/',
     'ItenaryBuilder': '/itenary-builder',
-    'Add': '/add',
+    'Add': '/admin',
 }
 export const allLinks = {
     [link.Home]: {
