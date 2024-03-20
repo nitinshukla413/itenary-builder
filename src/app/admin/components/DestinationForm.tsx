@@ -22,7 +22,7 @@ const DestinationForm = () => {
             </div>
           </div>
         </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md">Submit</button>
+        <button type="submit" className="bg-[#4D9FD7] hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md">Submit</button>
       </form>
     </div>
   );
