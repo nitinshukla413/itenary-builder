@@ -33,10 +33,8 @@ const AdminForms = () => {
           return <h3 onClick={() => handleSelect(elem)} className={`${typeOfForm === elem ? 'bg-blue-400 text-white' : ''}  cursor-pointer p-3 px-10 text-black  text-xl font-[500]`}>{elem[0]?.toUpperCase() + elem?.slice(1)}</h3>
         })}
       </div>
-      <div className='flex flex-col py-20 w-full'>
+      <div className='flex flex-col py-20 w-full justify-center items-center'>
         {getForm()}
-
-
       </div>
     </div>
   )

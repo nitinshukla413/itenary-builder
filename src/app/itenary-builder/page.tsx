@@ -2,8 +2,6 @@
 import React, { useRef, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Summary from "@/components/summary";
-import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
@@ -216,17 +214,17 @@ const Travel = () => {
                   <h2 className="text-black text-lg font-bold wider mb-2">
                     City
                   </h2>
-                  <TextField
-                    id="outlined"
-                    label="City"
-                    placeholder="Select city"
-                    className="w-full"
+                  <DropDown
+                    menuItems={['Paris', 'Italy']}
+                    handleChange={(event) => {
+                    }}
+                    title="City" label="City"
                   />
-                  <TextField
-                    id="outlined"
-                    label="Activities"
-                    placeholder="Select activities"
-                    className="w-full"
+                    <DropDown
+                    menuItems={['ParaCelling', 'Jumping']}
+                    handleChange={(event) => {
+                    }}
+                    title="Activities" label="Activities"
                   />
                 </div>
                 <div className="space-y-5 ">
