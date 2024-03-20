@@ -24,7 +24,9 @@ export default function Home() {
 
   return (
     <div className="w-full h-full bg-white">
-      <HomeComponent />
+      <div className="flex px-10 h-[100vh]  py-5">
+        <HomeComponent />
+      </div>
     </div>
   );
 }
