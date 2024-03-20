@@ -94,7 +94,7 @@ const Travel = () => {
             onClick={handleAdd}
             color={"white"}
             fontSize="large"
-            className={`cursor-pointer rounded-3xl flex justify-center items-center bg-[#4D9FD7]`}
+            className={`cursor-pointer text-white rounded-3xl flex justify-center items-center bg-[#4D9FD7]`}
           />
         </div>
         {/* header */}
@@ -336,7 +336,7 @@ const Travel = () => {
                   {!lastDay && <div className="w-[35%]">
                     <CustomButton title="Save PDF" variant="secondary" onClick={() => { }}></CustomButton>
                   </div>}
-                  <div className={`w-[55%] ${!lastDay ? 'w-full' : ''}`}>    <CustomButton title="Continue" onClick={handleContinue}></CustomButton>
+                  <div className={` ${!lastDay ? 'w-[50%]' : 'w-full'}`}>    <CustomButton title="Continue" onClick={handleContinue}></CustomButton>
                   </div>
                 </div>
               </div>
