@@ -26,9 +26,9 @@ const Travel = () => {
   const handleChangeDays = () => { };
   return (
     <div className="bg-white w-[100vw] flex justify-center  item-center">
-      <div className="w-[80%] h-full p-10">
+      <div className="w-[80%]  max-md:w-full h-full p-10 max-md:p-2 max-md:p-2">
         {/* header */}
-        <div className="flex justify-center items-center space-x-[10px] ">
+        <div className="flex justify-center items-center space-x-[10px] max-md:space-x-2 w-full">
           <div className="flex rounded-3xl w-full overflow-x-scroll scrollbar-hide no-scrollbar bg-gray-200 justify-between items-center">
             {noOfDays?.map((no: any) => {
               let value = `Day ${no}`;
@@ -38,11 +38,11 @@ const Travel = () => {
               return (
                 <div
                   onClick={() => handleSelect(no)}
-                  className={`p-3 cursor-pointer min-w-60 rounded-3xl flex justify-center items-center ${selectedDay === no ? "bg-blue-400" : "bg-gray-200 "
+                  className={`p-3 cursor-pointer min-w-60 max-md:p-2 max-md:min-w-full  rounded-3xl flex justify-center items-center ${selectedDay === no ? "bg-blue-400" : "bg-gray-200 "
                     }`}
                 >
                   <h3
-                    className={`text-black text-center text-[17px] font-[400] ${selectedDay === no ? "text-white" : ""
+                    className={`text-black text-center text-lg font-[400] ${selectedDay === no ? "text-white" : ""
                       }`}
                   >
                     {value}
@@ -59,8 +59,8 @@ const Travel = () => {
           />
         </div>
         {/* header */}
-        <div className="flex flex-row justify-between items-start my-10">
-          <div className="w-[60%] space-y-5">
+        <div className="flex flex-row justify-between items-start my-10 max-md:my-5 max-md:flex-col max-md:justify-center max-md:items-center">
+          <div className="w-[60%] space-y-5 max-md:w-full max-md:p-5">
             <h2 className="text-3xl font-[600] text-black">
               {selectedDay === 0 ? "Cover" : "Day " + selectedDay}
             </h2>
@@ -264,7 +264,7 @@ const Travel = () => {
               </div>
             )}
           </div>
-          <div className="w-[30%]">
+          <div className="w-[30%] max-md:w-full max-md:p-5">
             <Summary />
           </div>
         </div>
