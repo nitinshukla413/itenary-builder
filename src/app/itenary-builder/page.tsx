@@ -42,7 +42,7 @@ const Travel = () => {
   const handlePackage = (val: any) => {
     setSelectedDay({ ...selectedDayPackage, ...val });
   }
-  const [selectedDay, setSelectedDay] = useState<any>(1);
+  const [selectedDay, setSelectedDay] = useState<any>(0);
   const handleSelect = (val: any) => {
     setSelectedDay(val);
   };
@@ -52,11 +52,16 @@ const Travel = () => {
     setNoOfDays(updatedDays);
   };
   const handleChangeDays = () => { };
-  const handleUpdatePackage = ({ key1, key2, elem }) => {
+  const handleUpdatePackage = ({ key1, key2, elem }: { key1: string, key2: string, elem: string }) => {
     let updatedSelectedDayPackage = selectedDayPackage
     updatedSelectedDayPackage[key1][key2] = elem
     handlePackage(updatedSelectedDayPackage)
   }
+  const handleContinue = () => {
+    if (selectedDay < noOfDays?.length - 1)
+      setSelectedDay(selectedDay + 1)
+  }
+  const lastDay=selectedDay === noOfDays?.length - 1
   return (
     <div className="bg-white w-[100vw] flex justify-center  item-center">
       <div className="w-[80%]  max-md:w-full h-full p-10 max-md:p-2 max-md:p-2">
@@ -202,7 +207,7 @@ const Travel = () => {
                     />
                   </div>
                 </div>
-                <CustomButton title="Continue"></CustomButton>
+                <CustomButton title="Continue" onClick={handleContinue}></CustomButton>
               </div>
             ) : (
               <div className="flex flex-col space-y-10 w-[70%]">
@@ -339,8 +344,15 @@ const Travel = () => {
                     </h3>
                   </div>
                   <FormControl className="w-full" >
-                 <OutlinedInput placeholder="Enter summary of the day" multiline />
-               </FormControl>
+                    <OutlinedInput minRows={6} placeholder="Enter summary of the day" multiline />
+                  </FormControl>
+                </div>
+                <div className="flex justify-between w-full">
+                  {!lastDay && <div className="w-[35%]">
+                    <CustomButton title="Save PDF" variant="secondary" onClick={() => { }}></CustomButton>
+                  </div>}
+                  <div className={`w-[55%] ${!lastDay?'w-full':''}`}>    <CustomButton title="Continue" onClick={handleContinue}></CustomButton>
+                  </div>
                 </div>
               </div>
             )}
