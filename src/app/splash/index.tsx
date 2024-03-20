@@ -20,12 +20,12 @@ const SplashScreen = (props: any) => {
     }
 
     return (
-        <div onClick={handleClick} className={`w-full flex flex-col justify-center items-center relative ${isClicked ? '-top-20' : ''}`}>
+        <div onClick={handleClick} className={`w-full flex flex-col justify-center items-center relative ${isClicked ? '-top-20 max-md:top-0' : ''}`}>
             <div
                 className="flex flex-col relative justify-center items-center">
                 <div
                     data-aos={isClicked ? 'fade-up' : 'zoom-in'}
-                    className={` py-3 ${isClicked ? 'h-[30vh] w-[20vw] relative -right-5' : 'h-[45vh] w-[30vw] relative -right-10 '}`}>
+                    className={` py-3 ${isClicked ? 'h-[30vh] w-[20vw] relative -right-5 max-md:right-0 max-md:w-full max-md:h-[25vh]' : 'h-[45vh] w-[30vw] relative -right-10 max-md:-right-3 max-md:h-[40vh] max-md:w-full '}`}>
                     <Image
                         src={Logo} alt="image" objectFit="contain" className='w-full h-full' />
                 </div>
@@ -35,7 +35,7 @@ const SplashScreen = (props: any) => {
                 </div>
             </div>
             {isClicked && (
-                <div data-aos="slide up" data-aos-delay="1000" className="py-10 w-[20%] flex flex-col justify-center items-center ">
+                <div data-aos="slide up" data-aos-delay="1000" className="py-10 w-[20%] max-md:w-4/5 flex flex-col justify-center items-center ">
                     <div className='w-full flex-col justify-center items-center'>
                         <Box className='flex items-end w-full justify-center ' >
                             <AccountCircle sx={{ color: '#4e4e4eee', mr: 1, my: 0.5 }} />
