@@ -16,7 +16,7 @@ const HotelForms = () => {
       <div className='py-5'>
         <div className="w-full flex flex-col justify-start items-start">
           <div className="flex flex-wrap w-full">
-            <div className="w-[45%]  mr-10 mb-5 max-md:w-full ">
+            <div className="w-[45%] max-md:mr-0  mr-10 mb-5 max-md:w-full ">
               <TextField
                 id="outlined"
                 label="Hotel Name"
@@ -42,7 +42,7 @@ const HotelForms = () => {
                   title="City" label="City"
                 />
               </div>
-              <div className="w-[45%]  mb-10 max-md:w-full ">
+              <div className="w-[45%]   mb-10 max-md:w-full ">
                 <DropDown
                 
                   menuItems={['UK', 'New york', 'XYS']}

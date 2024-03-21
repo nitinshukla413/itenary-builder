@@ -15,11 +15,11 @@ const TableHeader = (props: TableHeaderProps) => {
     const { handleFilter, toggle, value } = props
 
     return (
-        <Box sx={{ p: 3, pb: 3, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Box className="max-md:space-y-5 max-md:justify-center max-md:items-center" sx={{ p: 3, pb: 3, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
             <TextField
                 size='small'
                 value={value}
-                className='w-1/2'
+                className='w-1/2 max-md:w-full '
                 placeholder='Search Passengers'
                 onChange={e => handleFilter(e.target.value)}
                 // InputProps={{
@@ -32,7 +32,7 @@ const TableHeader = (props: TableHeaderProps) => {
                 //     )
                 // }}
             />
-            <div className='w-[15%] flex'>
+            <div className='w-[15%] max-md:w-1/2 flex'>
                 <CustomButton variant='primary' leadingIcon={<AddCircleIcon fontSize='small' className='text-white mr-2' />} title='Add User' onClick={toggle} >
                 </CustomButton>
             </div>
