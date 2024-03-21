@@ -1,14 +1,32 @@
-import Image from "next/image";
-import Link from "next/link";
+'use client'
+import { useEffect, useState } from "react";
+import AOS from 'aos'
+import 'aos/dist/aos.css';
+import SplashScreen from "./login/page";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import HomeComponent from "@/components/home";
+import SideNavBar from "@/components/sideNav";
+import Layout from "@/components/layout";
 
 export default function Home() {
+  const route = useRouter();
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    })
+    const isLoggedIn = localStorage.getItem('login')
+    console.log(isLoggedIn, "<isLoggedIn")
+    if (!isLoggedIn) {
+      route.push('/login')
+
+    }
+  }, []);
+
+
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
- 
-      <Link href="/login" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Go to Login
-      </Link>
-    
-  </div>
+    <Layout>
+      <HomeComponent />
+    </Layout>
   );
 }
