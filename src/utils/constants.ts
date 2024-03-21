@@ -1,6 +1,9 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import HandymanIcon from '@mui/icons-material/Handyman';
+import HotelIcon from '@mui/icons-material/Hotel';
+import AddLocationIcon from '@mui/icons-material/AddLocation';
+import RowingIcon from '@mui/icons-material/Rowing';
 export const link = {
     'Home': '/',
     'ItenaryBuilder': '/itenary-builder',
@@ -24,14 +27,18 @@ export const allLinks = {
         sublinks:[{
             title:'Add Hotels',
             link:'/admin',
+            icon:HotelIcon
         },{
             title:'Add Destinations',
             link:'/admin',
+            icon:AddLocationIcon
         },
         {
             title:'Add Activity',
             link:'/admin',
+            icon:RowingIcon
         }]
+
     },
 }
 
