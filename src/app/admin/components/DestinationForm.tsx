@@ -6,76 +6,29 @@ import Button from '@/components/button';
 
 const DestinationForm = () => {
   return (
-    <div className='max-md:w-full shadow-lg p-10 w-[80%] border rounded-xl'>
-    <div className="flex justify-between mb-5">
-      <h3 className="text-2xl font-bold text-black">Add Destination</h3>
+    <div className="max-w-md mx-auto bg-white shadow-xl rounded-md p-6 m-5">
+      <h2 className="text-2xl font-bold mb-4">Destination Form</h2>
+      <form className="space-y-4">
+        <div className="flex flex-col space-y-5">
+          <input type="text" placeholder="Select Destination" className="input input-bordered w-full max-w-xs" />
+          <textarea className="textarea textarea-bordered w-full max-w-xs" placeholder="Destination Description"></textarea>
+          <select className="select select-bordered w-full max-w-xs">
+            <option disabled selected>Location</option>
+            <option>Country</option>
+            <option>City</option>
+          </select>
+          <input type="text" placeholder="Points of Interest" className="input input-bordered w-full max-w-xs" />
+          <div className="col-span-2">
+            <label htmlFor="file" className="block text-gray-700 font-bold mb-2">Upload Image</label>
+            <div className="flex items-center justify-between">
+              <input type="file" id="file" className="file-input file-input-bordered w-full max-w-xs" />
+              <span className="ml-2 text-sm text-gray-600">(Max file size: 5MB)</span>
+            </div>
+          </div>
+        </div>
+        <button type="submit" className="bg-[#4D9FD7] hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md">Submit</button>
+      </form>
     </div>
-    <div className="w-full flex flex-col justify-start items-start">
-      <div className="flex flex-wrap w-full">
-      <div className="w-[45%] mr-10 mb-10 max-md:w-full ">
-          <TextField
-            id="outlined"
-            label="Location"
-            placeholder="Enter location"
-            className="w-full max-md:w-full"
-          />
-        </div>
-         <div className="w-[90%]  mb-10 max-md:w-full ">
-          <FormControl className="w-full" >
-            <OutlinedInput minRows={6} placeholder="Destination Description " multiline />
-          </FormControl>
-        </div>
-       
-        <div className="w-[45%] mr-10 mb-10 max-md:w-full ">
-          <TextField
-            id="outlined"
-            label="Duration"
-            placeholder="Enter duration"
-            className="w-full max-md:w-full"
-          />
-        </div>
-        <div className="w-[45%] mr-10 mb-10 max-md:w-full ">
-          <TextField
-            id="outlined"
-            label="Cost"
-            placeholder="Enter cost"
-            className="w-full max-md:w-full"
-          />
-        </div>
-        <div className="w-[45%]  mb-10 max-md:w-full ">
-          <DropDown
-            className="w-full"
-            menuItems={['Destination 1', 'Destination 2', 'Destination 3']}
-            handleChange={(event) => {
-            }}
-            title="Associated Destinations" label="Associated Destinations"
-          />
-        </div>
-      </div>
-      <div
-        className="w-[50%] max-md:w-full mb-2">
-        <label
-          for="uploadFile1"
-          className="flex cursor-pointer space-x-3  bg-gray-200/70 w-[50%] justify-center items-center text-white ">
-          <AttachFileIcon
-            fontSize="small"
-            className="text-[#707070ee]"
-          />
-          <h1 className="cursor-pointer text-[#707070ee] py-2 px-4 rounded">
-            Upload File
-
-          </h1>
-          <input type="file" id='uploadFile1' className="hidden" />
-        </label>
-        <span className="ml-2 text-sm text-gray-600">(Max file size: 5MB)</span>
-      </div>
-    </div>
-    <div className='w-full flex justify-center items-center'>
-      <div className="w-[40%] flex justify-center items-center  my-10 max-md:w-full ">
-        <Button title="Submit"></Button>
-      </div>
-    </div>
-  </div>
   );
 };
 

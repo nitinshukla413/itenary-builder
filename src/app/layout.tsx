@@ -18,12 +18,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-        <AppRouterCacheProvider options={{ key: 'css' }}>
-      <body className={'flex flex-col justify-center bg-white'}>
-        <Header />
-        {children}
+      <AppRouterCacheProvider options={{ key: 'css' }}>
+        <body className={'flex flex-col justify-center bg-[#F7F7F9]'}>
+          <Header />
+          <div className="flex ">
+            <div className="h-[100vh] w-[20vw] ">
+
+            </div>
+            {children}
+          </div>
         </body>
-     
       </AppRouterCacheProvider>
     </html>
   );
