@@ -17,7 +17,7 @@ const Login = (props: any) => {
     const router=useRouter()
     const handleLogin = () => {
         router.push('/')
-        localStorage.setItem('login',true)
+        localStorage.setItem('login',"true")
     }
 
     return (

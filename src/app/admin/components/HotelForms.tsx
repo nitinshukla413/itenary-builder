@@ -35,18 +35,18 @@ const HotelForms = () => {
             <div className='w-full flex flex-wrap space-x-10'>
               <div className="w-[45%]  mb-10 max-md:w-full ">
                 <DropDown
-                  className="w-full"
+                
                   menuItems={['Paris', 'New york', 'XYS']}
-                  handleChange={(event) => {
+                  handleChange={() => {
                   }}
                   title="City" label="City"
                 />
               </div>
               <div className="w-[45%]  mb-10 max-md:w-full ">
                 <DropDown
-                  className="w-full"
+                
                   menuItems={['UK', 'New york', 'XYS']}
-                  handleChange={(event) => {
+                  handleChange={() => {
                   }}
                   title="Country" label="Country"
                 />
@@ -54,9 +54,9 @@ const HotelForms = () => {
             </div>
             <div className="w-[45%] mr-10 mb-10 max-md:w-full ">
               <DropDown
-                className="w-full"
+               
                 menuItems={['Double Bed', 'Single Bed', 'Delux']}
-                handleChange={(event) => {
+                handleChange={() => {
                 }}
                 title="Room Type" label="Room Type"
               />
@@ -72,7 +72,7 @@ const HotelForms = () => {
             <div
               className="w-[30%] mx-4 mr-10 max-md:w-full mb-2">
               <label
-                for="uploadFile1"
+                
                 className="flex cursor-pointer space-x-3  bg-gray-200/70 w-full justify-center items-center text-white ">
                 <AttachFileIcon
                   fontSize="small"
@@ -86,7 +86,7 @@ const HotelForms = () => {
               <span className="ml-2 text-sm text-gray-600">(Max file size: 5MB)</span>
             </div>
             <div className="flex  justify-start items-start space-x-5">
-              {[typeOfFood.Breakfast, typeOfFood["Packed Lunch"], typeOfFood.Lunch, typeOfFood.Dinner].map(elem => <div className="flex justify-start items-center">
+              {[typeOfFood.Breakfast, typeOfFood["Packed Lunch"], typeOfFood.Lunch, typeOfFood.Dinner].map((elem,i) => <div key={i} className="flex justify-start items-center">
                 <Checkbox {...label} onChange={() => { }} />
                 <h3 className="text-[#707070ee]">
                   {elem}

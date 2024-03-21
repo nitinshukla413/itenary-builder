@@ -33,7 +33,6 @@ const Chip = (props: any) => {
   const propsToPass = { ...props }
 
   propsToPass.rounded = undefined
-console.log(colors[color],"<FEF6E7")
   return (
     <MuiChip
       {...propsToPass}

@@ -14,7 +14,7 @@ export default function Home() {
       once: false,
     })
     const isLoggedIn = localStorage.getItem('login')
-    console.log(isLoggedIn, "<isLoggedIn")
+   
     if (!isLoggedIn) {
       route.push('/login')
 

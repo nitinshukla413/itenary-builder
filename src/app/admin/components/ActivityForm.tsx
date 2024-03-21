@@ -28,18 +28,16 @@ const ActivityForm = () => {
             <div className='w-full flex flex-wrap space-x-10'>
               <div className="w-[45%]  mb-10 max-md:w-full ">
                 <DropDown
-                  className="w-full"
                   menuItems={['Paris', 'New york', 'XYS']}
-                  handleChange={(event) => {
+                  handleChange={() => {
                   }}
                   title="City" label="City"
                 />
               </div>
               <div className="w-[45%]  mb-10 max-md:w-full ">
                 <DropDown
-                  className="w-full"
                   menuItems={['UK', 'New york', 'XYS']}
-                  handleChange={(event) => {
+                  handleChange={() => {
                   }}
                   title="Country" label="Country"
                 />
@@ -66,9 +64,8 @@ const ActivityForm = () => {
             </div>
             <div className="w-[45%]  mb-10 max-md:w-full ">
               <DropDown
-                className="w-full"
                 menuItems={['Destination 1', 'Destination 2', 'Destination 3']}
-                handleChange={(event) => {
+                handleChange={() => {
                 }}
                 title="Associated Destinations" label="Associated Destinations"
               />
@@ -77,7 +74,6 @@ const ActivityForm = () => {
           <div
             className="w-[50%] max-md:w-full mb-2">
             <label
-              for="uploadFile1"
               className="flex cursor-pointer space-x-3  bg-gray-200/70 w-[50%] justify-center items-center text-white ">
               <AttachFileIcon
                 fontSize="small"

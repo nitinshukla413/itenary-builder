@@ -60,16 +60,16 @@ const Summary = () => {
             </div>
             <div className="flex flex-col  justify-start items-start w-full py-5 px-2">
                 <h2 className="text-lg font-[600] text-black pb-5">Pricing</h2>
-                {days.map((day) => (
-                    <div className="flex flex-col space-y-2 mb-5 items-start  w-full  justify-center">
+                {days.map((day,i) => (
+                    <div key ={i} className="flex flex-col space-y-2 mb-5 items-start  w-full  justify-center">
                         <div className="flex justify-start space-x-1 items-center text-black font-[500] text-md">
                             <h2>Day {day.no}:</h2>
                             <h2> {day.title}</h2>
                         </div>
                         <div className="flex space-y-2 flex-col justify-start w-full items-center text-black">
-                            {day.subSteps.map((elem) => {
+                            {day.subSteps.map((elem,i) => {
                                 return (
-                                    <div className="flex justify-between w-full text-[#707070ee]">
+                                    <div key={i} className="flex justify-between w-full text-[#707070ee]">
                                         <h2 className="w-4/5"><TaskAltIcon fontSize="small" className="text-[#1ad81aee] mr-3" />{elem.title}</h2>
                                         <h2>&#x24;{elem.price}</h2>
                                     </div>

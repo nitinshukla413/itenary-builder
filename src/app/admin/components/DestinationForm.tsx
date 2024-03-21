@@ -22,36 +22,34 @@ const DestinationForm = () => {
             </div>
             <div className="w-[45%]  mb-10 max-md:w-full ">
               <DropDown
-                className="w-full"
+                
                 menuItems={['Two Wheeler', 'four Wheeler', 'XYS']}
-                handleChange={(event) => {
+                handleChange={() => {
                 }}
                 title="Type of Vehicle" label="Type of Vehicle"
               />
             </div>
             <div className="w-[45%] mr-10  mb-10 max-md:w-full ">
               <DropDown
-                className="w-full"
                 menuItems={['Petrol', 'Diesel', 'Gas']}
-                handleChange={(event) => {
+                handleChange={() => {
                 }}
                 title="Type Of Fuel" label="Type Of Fuel"
               />
             </div>
             <div className="w-[45%]  mb-10 max-md:w-full ">
               <DropDown
-                className="w-full"
+               
                 menuItems={['Paris', 'New york', 'XYS']}
-                handleChange={(event) => {
+                handleChange={() => {
                 }}
                 title="City" label="City"
               />
             </div>
             <div className="w-[45%] mr-10  mb-10 max-md:w-full ">
               <DropDown
-                className="w-full"
                 menuItems={['UK', 'New york', 'XYS']}
-                handleChange={(event) => {
+                handleChange={() => {
                 }}
                 title="Country" label="Country"
               />
@@ -67,9 +65,9 @@ const DestinationForm = () => {
             </div>
             <div className="w-[45%]  mb-10 max-md:w-full ">
               <DropDown
-                className="w-full"
+               
                 menuItems={['Destination 1', 'Destination 2', 'Destination 3']}
-                handleChange={(event) => {
+                handleChange={() => {
                 }}
                 title="Associated Destinations" label="Associated Destinations"
               />

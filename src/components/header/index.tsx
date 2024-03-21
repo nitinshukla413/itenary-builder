@@ -26,7 +26,7 @@ const Header = () => {
             </div>
         </div>
         <div className="flex max-md:hidden w-[70%] justify-end space-x-20 items-center">
-            {links.map(l => <Link href={l.link} className="link link-hover text-[18px] wider font-[600] text-black">{l.title}</Link>)}
+            {links.map((l,i) => <Link key={i} href={l.link} className="link link-hover text-[18px] wider font-[600] text-black">{l.title}</Link>)}
             <div className="avatar">
                 <div className="w-10 rounded-full">
                     <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />

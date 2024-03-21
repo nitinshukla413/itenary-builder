@@ -14,7 +14,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Travel = () => {
   const [noOfDays, setNoOfDays] = useState<any[]>([0, 1, 2, 3, 4, 5]);
-  const [package, setPackage] = useState<any[]>([]);
+
   const [selectedDayPackage, setSelectedDayPackage] = useState<any>({
     city: '',
     acitivity: '',
@@ -51,7 +51,7 @@ const Travel = () => {
     setNoOfDays(updatedDays);
   };
   const handleChangeDays = () => { };
-  const handleUpdatePackage = ({ key1, key2, elem }: { key1: string, key2: string, elem: string }) => {
+  const handleUpdatePackage = ({ key1, key2, elem }: { key1: any, key2: any, elem: any }) => {
     let updatedSelectedDayPackage = selectedDayPackage
     updatedSelectedDayPackage[key1][key2] = elem
     handlePackage(updatedSelectedDayPackage)
@@ -74,6 +74,7 @@ const Travel = () => {
               }
               return (
                 <div
+                  key={no}
                   onClick={() => handleSelect(no)}
                   className={`p-3 cursor-pointer min-w-60 max-md:p-2 max-md:min-w-full  rounded-3xl flex justify-center items-center ${selectedDay === no ? "bg-[#4D9FD7]" : "bg-gray-200 "
                     }`}
@@ -90,7 +91,6 @@ const Travel = () => {
           </div>
           <AddIcon
             onClick={handleAdd}
-            color={"white"}
             fontSize="large"
             className={`cursor-pointer text-white rounded-3xl flex justify-center items-center bg-[#4D9FD7]`}
           />
@@ -115,7 +115,7 @@ const Travel = () => {
                     <h3 className="text-[#707070ee]">Add Custom</h3>
                   </div>
                   <label
-                    for="uploadFile1"
+                  
                     className="flex cursor-pointer space-x-3  bg-gray-200/70 w-[50%] justify-center items-center text-white ">
                     <AttachFileIcon
                       fontSize="small"
@@ -216,13 +216,13 @@ const Travel = () => {
                   </h2>
                   <DropDown
                     menuItems={['Paris', 'Italy']}
-                    handleChange={(event) => {
+                    handleChange={(event:any) => {
                     }}
                     title="City" label="City"
                   />
                     <DropDown
                     menuItems={['ParaCelling', 'Jumping']}
-                    handleChange={(event) => {
+                    handleChange={() => {
                     }}
                     title="Activities" label="Activities"
                   />
@@ -239,7 +239,7 @@ const Travel = () => {
                   />
                 </div>
                 <div className="flex justify-start items-center space-x-5">
-                  {[typeOfFood.Breakfast, typeOfFood["Packed Lunch"], typeOfFood.Lunch, typeOfFood.Dinner].map(elem => <div className="flex justify-start items-center">
+                  {[typeOfFood.Breakfast, typeOfFood["Packed Lunch"], typeOfFood.Lunch, typeOfFood.Dinner].map((elem,i) => <div key={i} className="flex justify-start items-center">
                     <Checkbox {...label} onChange={() => handleUpdatePackage({ key1: 'accomodation', key2: 'food', elem: elem })} checked={selectedDayPackage['accomodation']['food'] === elem} />
                     <h3 className="text-[#707070ee]">
                       {elem}
@@ -289,13 +289,13 @@ const Travel = () => {
                   </h2>
                   <DropDown
                     menuItems={[typeOfVehicle.Bike, typeOfVehicle.Car]}
-                    handleChange={(event) => {
+                    handleChange={(event:any) => {
                       handleUpdatePackage({ key1: 'transport', key2: 'vehicleType', elem: event.target.value })
                     }} title="Select Vehicle" label="Select Vehicle" value={selectedDayPackage['transport']['vehicleType']} />
 
                   <DropDown
                     menuItems={[typeOfFuel.Petrol, typeOfFuel.Diesel]}
-                    handleChange={(event) => {
+                    handleChange={(event:any) => {
                       handleUpdatePackage({ key1: 'transport', key2: 'fuelType', elem: event.target.value })
                     }}
                     title="Fuel Type" label="Fuel Type" value={selectedDayPackage['transport']['fuelType']} />

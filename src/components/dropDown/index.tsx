@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 
-const DropDown = ({ value, handleChange, menuItems = [],title,label }:{ value:any, handleChange:any, menuItems :any[],title:any,label :any}) => {
+const DropDown = ({ value, handleChange, menuItems = [],title,label }:{ value?:any, handleChange?:any, menuItems ?:any[],title?:any,label ?:any}) => {
     return <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">{title}</InputLabel>
         <Select
@@ -10,7 +10,7 @@ const DropDown = ({ value, handleChange, menuItems = [],title,label }:{ value:an
             label={label}
             onChange={handleChange}
         >
-            {menuItems.map(veh => <MenuItem value={veh}>{veh}</MenuItem>)}
+            {menuItems.map((veh,i) => <MenuItem key={i} value={veh}>{veh}</MenuItem>)}
         </Select>
     </FormControl>
 }

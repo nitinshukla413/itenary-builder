@@ -1,11 +1,8 @@
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
-import Button from '../button'
+import CustomButton from '../button'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { IconButton, InputAdornment } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-
 interface TableHeaderProps {
 
     value: string
@@ -25,19 +22,19 @@ const TableHeader = (props: TableHeaderProps) => {
                 className='w-1/2'
                 placeholder='Search Passengers'
                 onChange={e => handleFilter(e.target.value)}
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment>
-                            <IconButton>
-                                <SearchIcon />
-                            </IconButton>
-                        </InputAdornment>
-                    )
-                }}
+                // InputProps={{
+                //     endAdornment: (
+                //         <InputAdornment>
+                //             <IconButton>
+                //                 <SearchIcon />
+                //             </IconButton>
+                //         </InputAdornment>
+                //     )
+                // }}
             />
             <div className='w-[15%] flex'>
-                <Button leadingIcon={<AddCircleIcon fontSize='small' className='text-white mr-2' />} title='Add User' onClick={toggle} >
-                </Button>
+                <CustomButton variant='primary' leadingIcon={<AddCircleIcon fontSize='small' className='text-white mr-2' />} title='Add User' onClick={toggle} >
+                </CustomButton>
             </div>
 
         </Box>

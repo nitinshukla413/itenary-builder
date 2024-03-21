@@ -11,12 +11,9 @@ const typeOfForms = {
   'destination': 'destination',
 }
 const AdminForms = () => {
-  const forms = ['hotel', 'activity', 'destination']
   const searchParams = useSearchParams()
   const type = searchParams.get('type')||'hotel'
-  const handleSelect = (val: any) => {
-    setTypeOfForm(val)
-  }
+ 
  
   const getForm = () => {
     switch (type) {

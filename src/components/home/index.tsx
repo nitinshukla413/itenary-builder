@@ -101,7 +101,7 @@ const RowOptions = ({ id }: { id: number | string }) => {
     return (
         <>
             <IconButton size='small' onClick={handleRowOptionsClick}>
-                <MoreVertIcon size="large" color='black' className='text-black' />
+                <MoreVertIcon fontSize='large' className='text-black' />
             </IconButton>
             <Menu
                 keepMounted
@@ -124,15 +124,15 @@ const RowOptions = ({ id }: { id: number | string }) => {
                     onClick={handleRowOptionsClose}
                     href='/apps/user/view/overview/'
                 >
-                    <RemoveRedEyeIcon fontSize='small' color="black" className="text-black" />
+                    <RemoveRedEyeIcon fontSize='small' className="text-black" />
                     View
                 </MenuItem>
                 <MenuItem onClick={handleRowOptionsClose} sx={{ '& svg': { mr: 2 } }}>
-                    <ModeEditIcon fontSize='small' color="black" className="text-black" />
+                    <ModeEditIcon fontSize='small' className="text-black" />
                     Edit
                 </MenuItem>
                 <MenuItem onClick={handleDelete} sx={{ '& svg': { mr: 2 } }}>
-                    <DeleteIcon fontSize='small' color="black" className="text-black" />
+                    <DeleteIcon fontSize='small'  className="text-black" />
 
                     Delete
                 </MenuItem>
