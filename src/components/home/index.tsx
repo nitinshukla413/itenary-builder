@@ -68,10 +68,11 @@ const LinkStyled = styled(Link)(({ theme }) => ({
     }
 }))
 
+
 // ** renders client column
 const renderClient = (row: any) => {
     if (row.avatar.length) {
-        return <Avatar sx={{ bgcolor: userStatusObj[row.status] }} className='text-sm'>
+        return <Avatar sx={{ bgcolor: row.color }} className='text-sm'>
             {row.avatar[0] + row.avatar[1]}
         </Avatar>
     } else {
@@ -142,6 +143,20 @@ const RowOptions = ({ id }: { id: number | string }) => {
 
 const columns: GridColDef[] = [
     {
+        flex: 0.05,
+        minWidth: 20,
+        field: 'id',
+        headerName: 'S.No.',
+        renderCell: ({ row }: CellType) => {
+            const { fullName } = row
+            return (
+                <Box sx={{ display: 'flex', alignItems: 'center' }} className="px-10">
+                    <h2>{row.id + 1}</h2>
+                </Box>
+            )
+        }
+    },
+    {
         flex: 0.2,
         minWidth: 230,
         field: 'fullName',
@@ -159,7 +174,20 @@ const columns: GridColDef[] = [
         }
     },
     {
-        flex: 0.2,
+        flex: 0.1,
+        minWidth: 100,
+        field: 'phoneNo',
+        headerName: 'Phone Number',
+        renderCell: ({ row }: CellType) => {
+            return (
+                <Typography noWrap variant='body2'>
+                    {row.phone || '9022s388963'}
+                </Typography>
+            )
+        }
+    },
+    {
+        flex: 0.15,
         minWidth: 250,
         field: 'email',
         headerName: 'Email',
@@ -172,30 +200,29 @@ const columns: GridColDef[] = [
         }
     },
     {
-        flex: 0.15,
-        field: 'role',
-        minWidth: 150,
-        headerName: 'Role',
+        flex: 0.09,
+        field: 'tripDuration',
+        minWidth: 100,
+        headerName: 'Trip Duration',
         renderCell: ({ row }: CellType) => {
             return (
-                <Box  sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1, color: userRoleObj[row.role].color } }}>
-                    <IconifyIcon icon={userRoleObj[row.role].icon} fontSize={20} />
+                <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1, color: userRoleObj[row.role].color } }}>
                     <Typography noWrap sx={{ color: 'text.secondary', textTransform: 'capitalize' }}>
-                        {row.role}
+                        {row.tripDuration || '3 Days'}
                     </Typography>
                 </Box>
             )
         }
     },
     {
-        flex: 0.15,
-        minWidth: 120,
-        headerName: 'Plan',
-        field: 'currentPlan',
+        flex: 0.09,
+        minWidth: 100,
+        headerName: 'Cost',
+        field: 'cost',
         renderCell: ({ row }: CellType) => {
             return (
                 <Typography variant='subtitle1' noWrap sx={{ textTransform: 'capitalize' }}>
-                    {row.currentPlan}
+                    &#36; {row.cost || 400}
                 </Typography>
             )
         }
@@ -238,9 +265,9 @@ const HomeComponent = () => {
 
     const toggleAddUserDrawer = () => setAddUserOpen(!addUserOpen)
 
-    
+
     return (
-        <div className='w-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl '>
+        <div className='w-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl bg-white '>
             <CardHeader title='Passenger Details' className='font-[900] text-[#696969ee]' sx={{ pb: 1, '& .MuiCardHeader-title': { letterSpacing: '.15px' } }} />
             <Divider />
             <TableHeader value={value} handleFilter={handleFilter} toggle={toggleAddUserDrawer} />
@@ -253,7 +280,7 @@ const HomeComponent = () => {
                 paginationModel={paginationModel}
                 onPaginationModelChange={setPaginationModel}
             />
-            <AddDrawer open={addUserOpen} toggleDrawer={toggleAddUserDrawer}/>
+            <AddDrawer open={addUserOpen} toggleDrawer={toggleAddUserDrawer} />
         </div>
     )
 }

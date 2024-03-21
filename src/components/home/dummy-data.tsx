@@ -8,7 +8,8 @@ export const store = {
             role: 'author',
             email: 'nitin@gmail.com',
             currentPlan: '3400',
-            status: 'active'
+            status: 'active',
+            color: '#3366CC' // Blue
         },
         {
             id: 1,
@@ -18,7 +19,8 @@ export const store = {
             role: 'admin',
             email: 'sahil.jain@gmail.com',
             currentPlan: '34300',
-            status: 'pending'
+            status: 'pending',
+            color: '#DC3912' // Red
         },
         {
             id: 2,
@@ -28,9 +30,9 @@ export const store = {
             role: 'subscriber',
             email: 'pr@gmail.com',
             currentPlan: '300',
-            status: 'inactive'
+            status: 'inactive',
+            color: '#FF9900' // Orange
         },
-        // Adding more entries with real names
         {
             id: 3,
             fullName: 'John Doe',
@@ -39,7 +41,8 @@ export const store = {
             role: 'author',
             email: 'john.doe@example.com',
             currentPlan: '1000',
-            status: 'active'
+            status: 'active',
+            color: '#109618' // Green
         },
         {
             id: 4,
@@ -49,7 +52,8 @@ export const store = {
             role: 'admin',
             email: 'jane.smith@example.com',
             currentPlan: '2000',
-            status: 'pending'
+            status: 'pending',
+            color: '#FF6600' // Dark Orange
         },
         {
             id: 5,
@@ -59,9 +63,9 @@ export const store = {
             role: 'subscriber',
             email: 'michael.johnson@example.com',
             currentPlan: '1500',
-            status: 'inactive'
+            status: 'inactive',
+            color: '#990099' // Purple
         },
-        // Adding more entries with real names
         {
             id: 6,
             fullName: 'Emily Brown',
@@ -70,7 +74,8 @@ export const store = {
             role: 'editor',
             email: 'emily.brown@example.com',
             currentPlan: '2500',
-            status: 'active'
+            status: 'active',
+            color: '#0099C6' // Cyan
         },
         {
             id: 7,
@@ -80,7 +85,8 @@ export const store = {
             role: 'editor',
             email: 'david.jones@example.com',
             currentPlan: '2100',
-            status: 'pending'
+            status: 'pending',
+            color: '#DD4477' // Dark Pink
         },
         {
             id: 8,
@@ -90,9 +96,9 @@ export const store = {
             role: 'editor',
             email: 'sarah.davis@example.com',
             currentPlan: '2800',
-            status: 'inactive'
+            status: 'inactive',
+            color: '#66AA00' // Dark Green
         },
-        // Adding more entries to reach 30
         {
             id: 9,
             fullName: 'Robert Taylor',
@@ -101,7 +107,8 @@ export const store = {
             role: 'maintainer',
             email: 'robert.taylor@example.com',
             currentPlan: '3200',
-            status: 'active'
+            status: 'active',
+            color: '#B82E2E' // Dark Red
         },
         {
             id: 10,
@@ -111,7 +118,8 @@ export const store = {
             role: 'maintainer',
             email: 'jessica.thomas@example.com',
             currentPlan: '2800',
-            status: 'pending'
+            status: 'pending',
+            color: '#316395' // Dark Blue
         },
         {
             id: 11,
@@ -121,8 +129,9 @@ export const store = {
             role: 'maintainer',
             email: 'mark.wilson@example.com',
             currentPlan: '2900',
-            status: 'inactive'
+            status: 'inactive',
+            color: '#994499' // Dark Purple
         },
-        // Continue adding more entries as needed
+        // Continue adding unique colors for each user object as needed
     ]
 };
