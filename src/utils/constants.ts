@@ -7,7 +7,7 @@ import RowingIcon from '@mui/icons-material/Rowing';
 export const link = {
     'Home': '/',
     'ItenaryBuilder': '/itenary-builder',
-    'Add': '/admin',
+    'Add': '/admin/hotel',
 }
 export const allLinks = {
     [link.Home]: {
@@ -26,16 +26,16 @@ export const allLinks = {
         icon:AddCircleIcon,
         sublinks:[{
             title:'Add Hotels',
-            link:'/admin?type=hotel',
+            link:'/admin/hotel',
             icon:HotelIcon
         },{
             title:'Add Destinations',
-            link:'/admin?type=destination',
+            link:'/admin/destination',
             icon:AddLocationIcon
         },
         {
             title:'Add Activity',
-            link:'/admin?type=activity',
+            link:'/admin/activity',
             icon:RowingIcon
         }]
 

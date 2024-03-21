@@ -7,9 +7,6 @@ import { usePathname } from "next/navigation";
 const SideNavBar = () => {
     const [expand, setExpand] = useState(true)
     const pathName = usePathname()
-    // const searchParams = ''
-    const type ='' 
-    // searchParams.get('type')
     return (
         <div className="flex py-10">
             <div className="h-[100vh] w-[15vw] max-md:hidden">
@@ -33,7 +30,7 @@ const SideNavBar = () => {
                                 {elem?.sublinks && expand && <List>
                                     {elem?.sublinks?.map((link: any, i: number) => {
                                         const SubIcon = link.icon
-                                        const isLinkActive = elem.link + `?type=${type}` === link.link
+                                        const isLinkActive = pathName  === link.link
                                         return (
                                             <ListItem key={index} className={`ml-10 ${i === 0 ? '' : ''} ${isLinkActive ? 'bg-[#d7efff]' : ''}`}>
                                                 <Link href={link.link} className="w-auto" >

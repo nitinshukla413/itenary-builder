@@ -1,18 +1,19 @@
 'use client'
 import React, { useState } from 'react'
-import HotelForms from './components/HotelForms'
-import ActivityForm from './components/ActivityForm'
-import DestinationForm from './components/DestinationForm'
+import HotelForms from '../components/HotelForms'
+import ActivityForm from '../components/ActivityForm'
+import DestinationForm from '../components/DestinationForm'
 import Layout from '@/components/layout'
+import { usePathname, useRouter } from 'next/navigation'
 const typeOfForms = {
   'hotel': 'hotel',
   'activity': 'activity',
   'destination': 'destination',
 }
 const AdminForms = () => {
-  // const searchParams = useSearchParams()
-  const type ='hotel'
-  //  searchParams.get('type')||'hotel'
+  const router=usePathname();
+  const type =router?.split?.('/')?.[2]||'hotel'
+
   const getForm = () => {
     switch (type) {
       case typeOfForms.hotel:
