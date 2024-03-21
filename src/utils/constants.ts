@@ -26,16 +26,16 @@ export const allLinks = {
         icon:AddCircleIcon,
         sublinks:[{
             title:'Add Hotels',
-            link:'/admin',
+            link:'/admin?type=hotel',
             icon:HotelIcon
         },{
             title:'Add Destinations',
-            link:'/admin',
+            link:'/admin?type=destination',
             icon:AddLocationIcon
         },
         {
             title:'Add Activity',
-            link:'/admin',
+            link:'/admin?type=activity',
             icon:RowingIcon
         }]
 

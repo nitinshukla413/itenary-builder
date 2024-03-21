@@ -327,7 +327,7 @@ const Travel = () => {
                     </h3>
                   </div>
                   <FormControl className="w-full" >
-                    <OutlinedInput minRows={6} placeholder="Enter summary of the day" multiline />
+                    <OutlinedInput minRows={5} maxRows={5} placeholder="Enter summary of the day" multiline />
                   </FormControl>
                 </div>
                 <div className="flex justify-between w-full">
