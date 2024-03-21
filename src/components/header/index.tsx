@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import MenuIcon from '@mui/icons-material/Menu';
 const Header = () => {
     const currentPage = usePathname();
-    if (currentPage === "/login" || currentPage === "/")
+    if (currentPage === "/login")
         return <></>
     return <div className="p-5 flex justify-between items-center bg-white  w-full">
         <h1 className="text-black text-lg font-bold widest">Tara Travels</h1>

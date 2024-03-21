@@ -75,7 +75,7 @@ const Travel = () => {
               return (
                 <div
                   onClick={() => handleSelect(no)}
-                  className={`p-3 cursor-pointer min-w-60 max-md:p-2 max-md:min-w-full  rounded-3xl flex justify-center items-center ${selectedDay === no ? "bg-blue-400" : "bg-gray-200 "
+                  className={`p-3 cursor-pointer min-w-60 max-md:p-2 max-md:min-w-full  rounded-3xl flex justify-center items-center ${selectedDay === no ? "bg-[#4D9FD7]" : "bg-gray-200 "
                     }`}
                 >
                   <h3
@@ -92,7 +92,7 @@ const Travel = () => {
             onClick={handleAdd}
             color={"white"}
             fontSize="large"
-            className={`cursor-pointer rounded-3xl flex justify-center items-center bg-blue-400`}
+            className={`cursor-pointer rounded-3xl flex justify-center items-center bg-[#4D9FD7]`}
           />
         </div>
         {/* header */}
