@@ -23,7 +23,7 @@ const TableHeader = (props: TableHeaderProps) => {
                 size='small'
                 value={value}
                 className='w-1/2'
-                placeholder='Search User'
+                placeholder='Search Passengers'
                 onChange={e => handleFilter(e.target.value)}
                 InputProps={{
                     endAdornment: (
