@@ -62,7 +62,7 @@ const Travel = () => {
   }
   const lastDay = selectedDay === noOfDays?.length - 1
   return (
-    <div className=" w-[100vw] flex justify-center  item-center">
+    <div className=" w-[100vw] flex justify-center bg-[#F7F7F9]  item-center">
       <div className="w-[80%]  max-md:w-full h-full p-10 max-md:p-2 max-md:p-2">
         {/* header */}
         <div className="flex justify-center items-center space-x-[10px] max-md:space-x-2 w-full">

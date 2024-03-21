@@ -2,10 +2,8 @@
 import { useEffect, useState } from "react";
 import AOS from 'aos'
 import 'aos/dist/aos.css';
-import SplashScreen from "./login/page";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import HomeComponent from "@/components/home";
-import SideNavBar from "@/components/sideNav";
 import Layout from "@/components/layout";
 
 export default function Home() {

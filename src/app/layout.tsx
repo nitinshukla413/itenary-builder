@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "@/components/header";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Tara Travels",
