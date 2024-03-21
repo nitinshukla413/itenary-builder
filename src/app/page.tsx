@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 import SplashScreen from "./login/page";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import HomeComponent from "@/components/home";
+import SideNavBar from "@/components/sideNav";
 
 export default function Home() {
   const route = useRouter();
@@ -23,8 +24,9 @@ export default function Home() {
 
 
   return (
-    <div className="w-full h-full  ">
-      <div className="flex px-10">
+    <div className=" flex w-full h-full  ">
+      <SideNavBar />
+      <div className="flex w-[90vw] px-10 py-8">
         <HomeComponent />
       </div>
     </div>

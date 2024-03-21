@@ -82,16 +82,6 @@ const ActivityForm = () => {
         <div className="w-[40%] flex justify-center items-center  my-10 max-md:w-full ">
           <Button title="Submit"></Button>
         </div>
-        <div>
-          <label htmlFor="destinations" className="block text-gray-700 font-semibold">Associated Destinations</label>
-          <select id="destinations" name="destinations" multiple className="select select-bordered w-full max-w-xs">
-            <option>Destination 1</option>
-            <option>Destination 2</option>
-            <option>Destination 3</option>
-          </select>
-        </div>
-        <button type="submit" className="bg-[#4D9FD7] hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md">Submit</button>
-      </form>
       </div>
     </div>
   );

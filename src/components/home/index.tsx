@@ -268,7 +268,7 @@ const HomeComponent = () => {
 
     return (
         <div className='w-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl bg-white '>
-            <CardHeader title='Passenger Details' className='font-[900] text-[#696969ee]' sx={{ pb: 1, '& .MuiCardHeader-title': { letterSpacing: '.15px' } }} />
+            <CardHeader title='Passenger Details' className='font-[900] text-[#696969ee]' sx={{  px:4,py:3,'& .MuiCardHeader-title': { letterSpacing: '.15px' } }} />
             <Divider />
             <TableHeader value={value} handleFilter={handleFilter} toggle={toggleAddUserDrawer} />
             <DataGrid
