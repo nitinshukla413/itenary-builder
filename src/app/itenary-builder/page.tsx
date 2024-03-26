@@ -100,7 +100,7 @@ const Travel = () => {
                 <div
                   key={no}
                   onClick={() => handleSelect(no)}
-                  className={`flex min-w-60 cursor-pointer items-center justify-center  rounded-3xl p-3 max-md:min-w-full max-md:p-2 ${
+                  className={`hover:bg-[#c7e3f7] hover:text-white flex min-w-60 cursor-pointer items-center justify-center  rounded-3xl p-3 max-md:min-w-full max-md:p-2 ${
                     selectedDay === no ? 'bg-[#4D9FD7]' : 'bg-gray-200 '
                   }`}
                 >
@@ -115,11 +115,14 @@ const Travel = () => {
               );
             })}
           </div>
+          <div
+            className={`flex cursor-pointer items-center justify-center  w-10 h-10 rounded-3xl bg-[#4D9FD7] text-white shadow-lg`}
+            >
           <AddIcon
             onClick={handleAdd}
-            fontSize='large'
-            className={`flex cursor-pointer items-center justify-center rounded-3xl bg-[#4D9FD7] text-white shadow-lg`}
+            fontSize='medium'
           />
+          </div>
         </div>
         {/* header */}
         <div className='my-10 flex flex-row items-start justify-between max-md:my-5 max-md:flex-col max-md:items-center max-md:justify-center'>
