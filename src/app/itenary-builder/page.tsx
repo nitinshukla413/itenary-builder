@@ -8,13 +8,22 @@ import Checkbox from '@mui/material/Checkbox';
 import CustomButton from '../../components/button';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { SingleInputDateRangeField } from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
+import {LicenseInfo} from "@mui/x-license"
 import {
   FormControl,
   OutlinedInput,
 } from '@mui/material';
 import { typeOfFood, typeOfFuel, typeOfVehicle } from '@/utils/constants';
 import DropDown from '@/components/dropDown';
+
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+LicenseInfo.setLicenseKey(
+  'x0jTPl0USVkVZV0SsMjM1kDNyADM5cjM2ETPZJVSQhVRsIDN0YTM6IVREJ1T0b9586ef25c9853decfa7709eee27a1e',
+);
 
 const Travel = () => {
   const [noOfDays, setNoOfDays] = useState<any[]>([0, 1, 2, 3, 4, 5]);
@@ -85,6 +94,12 @@ const Travel = () => {
   const handleCheckboxChange = (option:any) => {
     setSelectedOption(option);
   };
+  const [selectedRange, setSelectedRange] = useState([null, null]);
+
+  const handleDateRangeChange = (newRange:any) => {
+    setSelectedRange(newRange);
+  };
+  console.log(selectedRange,">>>selectedRange")
 
 
   return (
@@ -173,24 +188,23 @@ const Travel = () => {
                 <div className='mb-10 w-[60%] space-y-10'>
                   <div>
                     <h2 className='mb-4 text-lg font-bold tracking-[0.6px] text-black'>
-                      Company Name
+                      Vendor Name
                     </h2>
                     <TextField
                       id='outlined'
-                      label='Name of company'
-                      placeholder='Enter name of company'
+                      label='Name of Vendor'
                       className='w-full'
                       size='small'
                     />
                   </div>
                   <div>
                     <h2 className='mb-4 text-lg font-bold tracking-[0.6px]  text-black'>
-                      Company Email
+                      Vendor Email
                     </h2>
                     <TextField
                       id='outlined'
                       label='Email'
-                      placeholder='Enter email'
+                     
                       className='w-full'
                       size='small'
                     />
@@ -202,7 +216,7 @@ const Travel = () => {
                     <TextField
                       id='outlined'
                       label='Contact number'
-                      placeholder='Enter contact number'
+                    
                       className='w-full'
                       size='small'
                     />
@@ -221,25 +235,29 @@ const Travel = () => {
                   </div>
                   <div>
                     <h2 className='wider mb-5 text-lg font-[600] text-black'>
-                      Selected Date
+                      Select Dates
                     </h2>
                     {/* <DatePicker label="Basic date picker" /> */}
                     <div className='flex w-[80%] cursor-pointer  items-center justify-center space-x-3 bg-gray-200/70'>
-                      <CalendarMonthIcon
-                        fontSize='small'
-                        className='text-[#707070ee]'
-                      />
-                      <h1 className='cursor-pointer rounded px-4 py-2 text-[#707070ee]'>
-                        Select dates
-                      </h1>
-                      <input id='file-upload' type='file' className='hidden' />
+
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      
+                        <DateRangePicker
+                          slots={{ field: SingleInputDateRangeField }}
+                          name="allowedRange"
+                          className='w-full'
+                          value={selectedRange}
+                          onChange={handleDateRangeChange}
+                          
+                        />
+     
+                       </LocalizationProvider>
                     </div>
                   </div>
                   <div className='mb-10 flex w-full justify-between'>
                     <TextField
                       id='outlined'
                       label='Days'
-                      placeholder='Days'
                       className='w-[40%]'
                       type='number'
                       size='small'
