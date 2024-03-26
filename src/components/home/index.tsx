@@ -259,7 +259,7 @@ const HomeComponent = () => {
 
 
     return (
-        <div className='w-full h-screen shadow-[0_3px_10px_rgb(0,0,0,0.2)] justify-center items-center rounded-xl bg-white '>
+        <div className='w-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] justify-center items-center rounded-xl bg-white '>
             <CardHeader title='Customer Details' className='font-[900] text-[#696969ee]'  sx={{  px:4,py:3,'& .MuiCardHeader-title': { letterSpacing: '.15px' } }} />
             <Divider />
             <TableHeader value={value} handleFilter={handleFilter} toggle={toggleAddUserDrawer} />

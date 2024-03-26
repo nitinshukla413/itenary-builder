@@ -16,7 +16,7 @@ export const allLinks = {
         icon:HomeIcon,
     },
     [link.ItenaryBuilder]: {
-        title: 'Itenary Builder',
+        title: 'Itinerary Builder',
         link: link.ItenaryBuilder,
         icon:HandymanIcon,
     },

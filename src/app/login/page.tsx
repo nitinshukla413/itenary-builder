@@ -36,7 +36,7 @@ const Login = (props: any) => {
       >
         <motion.div initial={{ translateY: -30 }}
           transition={{ delay: 3, duration: 1 }}
-          className={`flex flex-col justify-center item-center rounded-lg w-[30%] ${isClicked ? ' bg-white bg-opacity-30 shadow-lg backdrop-blur-4.5' : ''}`}>
+          className={`flex flex-col justify-center item-center rounded-lg max-md:w-[90%] w-[30%] ${isClicked ? ' bg-white bg-opacity-30 shadow-lg backdrop-blur-4.5' : ''}`}>
           <motion.div
             animate={{
               scale: isClicked ? [] : [1, 0.9, 0.5, 0.8],
@@ -46,7 +46,7 @@ const Login = (props: any) => {
             className={`relative  flex flex-col items-center justify-center`}
           >
             <motion.div
-              className={` py-1 ${isClicked ? 'relative -right-5 h-[19vh] w-[20vw] max-md:right-0 max-md:h-[25vh] max-md:w-full' : 'relative -right-14 h-[60vh] w-[60vw] max-md:-right-3 max-md:h-[40vh] max-md:w-full '}`}
+              className={` py-1 ${isClicked ? 'relative -right-5 h-[19vh] w-[20vw] max-md:right-0 max-md:h-[25vh] max-md:w-full ' : 'relative -right-14 h-[60vh] w-[60vw] max-md:-right-3 max-md:h-[40vh] max-md:w-[90vw] max-md:mb-10 '}`}
             >
               <Image
                 src={Logo}
@@ -75,7 +75,7 @@ const Login = (props: any) => {
           </motion.div>
           {isClicked && (
             <motion.div initial={{ visibility: 'hidden' }} animate={{ visibility: 'visible', translateY: -50 }}
-              className='flex w-full flex-col items-center justify-center py-10 max-md:w-4/5 rounded-lg p-5'>
+              className='flex  w-full px-10 max-md:mx-0 flex-col items-center justify-center py-10 max-md:w-full rounded-lg p-5'>
               <div className='w-full flex-col items-center justify-center py-10 space-y-8'>
                 <motion.div
                   initial={{ scaleX: 0 }}
