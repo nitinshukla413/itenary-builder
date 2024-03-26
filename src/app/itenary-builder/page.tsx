@@ -128,6 +128,7 @@ const Travel = () => {
             onClick={handleAdd}
             fontSize='medium'
           />
+          </div>
         </div>
         {/* header */}
         <div className='my-10 flex flex-row items-start justify-between max-md:my-5 max-md:flex-col max-md:items-center max-md:justify-center'>
@@ -482,7 +483,6 @@ const Travel = () => {
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
