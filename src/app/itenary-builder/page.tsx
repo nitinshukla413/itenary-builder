@@ -483,6 +483,7 @@ const Travel = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
