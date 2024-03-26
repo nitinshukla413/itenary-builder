@@ -12,13 +12,16 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { SingleInputDateRangeField } from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
-import {LicenseInfo} from "@mui/x-license"
+import { LicenseInfo } from "@mui/x-license";
+import Distance from "../../../public/assets/distance.svg"
 import {
   FormControl,
   OutlinedInput,
 } from '@mui/material';
 import { typeOfFood, typeOfFuel, typeOfVehicle } from '@/utils/constants';
 import DropDown from '@/components/dropDown';
+import Image from 'next/image';
+import { DirectionsBoat, Flight } from '@mui/icons-material';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 LicenseInfo.setLicenseKey(
@@ -91,15 +94,26 @@ const Travel = () => {
 
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleCheckboxChange = (option:any) => {
+  const handleCheckboxChange = (option: any) => {
     setSelectedOption(option);
   };
   const [selectedRange, setSelectedRange] = useState([null, null]);
 
-  const handleDateRangeChange = (newRange:any) => {
+  const handleDateRangeChange = (newRange: any) => {
     setSelectedRange(newRange);
   };
-  console.log(selectedRange,">>>selectedRange")
+  const [selectedFoods, setSelectedFoods] = React.useState([]);
+
+  const handleFoodSelection = (event) => {
+    const value = event.target.value;
+    setSelectedFoods((selected) => {
+      if (selected.includes(value)) {
+        return selected.filter((item) => item !== value);
+      } else {
+        return [...selected, value];
+      }
+    });
+  };
 
 
   return (
@@ -138,11 +152,11 @@ const Travel = () => {
           </div>
           <div
             className={`flex cursor-pointer items-center justify-center  w-10 h-10 rounded-3xl bg-[#4D9FD7] text-white shadow-lg`}
-            >
-          <AddIcon
-            onClick={handleAdd}
-            fontSize='medium'
-          />
+          >
+            <AddIcon
+              onClick={handleAdd}
+              fontSize='medium'
+            />
           </div>
         </div>
         {/* header */}
@@ -159,7 +173,7 @@ const Travel = () => {
                 <div className='relative -left-2 mb-10 max-md:left-0'>
                   <div className='flex items-center justify-start'>
                     <Checkbox
-                      
+
                       checked={selectedOption === 'Continue'}
                       onChange={() => handleCheckboxChange('Continue')}
                     />
@@ -169,7 +183,7 @@ const Travel = () => {
                   </div>
                   <div className='flex items-center justify-start'>
                     <Checkbox
-                   
+
                       checked={selectedOption === 'Custom'}
                       onChange={() => handleCheckboxChange('Custom')}
                     />
@@ -204,7 +218,7 @@ const Travel = () => {
                     <TextField
                       id='outlined'
                       label='Email'
-                     
+
                       className='w-full'
                       size='small'
                     />
@@ -216,7 +230,7 @@ const Travel = () => {
                     <TextField
                       id='outlined'
                       label='Contact number'
-                    
+
                       className='w-full'
                       size='small'
                     />
@@ -241,17 +255,17 @@ const Travel = () => {
                     <div className='flex w-[80%] cursor-pointer  items-center justify-center space-x-3 bg-gray-200/70'>
 
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
-      
+
                         <DateRangePicker
                           slots={{ field: SingleInputDateRangeField }}
                           name="allowedRange"
                           className='w-full'
                           value={selectedRange}
                           onChange={handleDateRangeChange}
-                          
+
                         />
-     
-                       </LocalizationProvider>
+
+                      </LocalizationProvider>
                     </div>
                   </div>
                   <div className='mb-10 flex w-full justify-between'>
@@ -286,14 +300,14 @@ const Travel = () => {
                     City
                   </h2>
                   <DropDown
-                    menuItems={['Paris', 'Italy']}
+                    menuItems={['Auckland', 'Dunedin', "Hamilton", "Rotorua", "Wellington"]}
                     handleChange={(event: any) => { }}
                     title='Select City'
                     label='Select City'
                     size="small"
                   />
                   <DropDown
-                    menuItems={['ParaCelling', 'Jumping']}
+                    menuItems={["Sky Tower", "Avon River", " Wellington Museum ", "Harbor City", " Wildlife Sanctuary"]}
                     handleChange={() => { }}
                     title='Activities'
                     label='Activities'
@@ -321,35 +335,28 @@ const Travel = () => {
                   ].map((elem, i) => (
                     <div key={i} className='flex items-center justify-start'>
                       <Checkbox
-                        {...label}
-                        onChange={() =>
-                          handleUpdatePackage({
-                            key1: 'accomodation',
-                            key2: 'food',
-                            elem: elem,
-                          })
-                        }
-                        checked={
-                          selectedDayPackage['accomodation']['food'] === elem
-                        }
+                        onChange={handleFoodSelection}
+                        value={elem}
+                        checked={selectedFoods.includes(elem)}
                       />
                       <h3 className='text-[#707070ee]'>{elem}</h3>
                     </div>
                   ))}
                 </div>
-                <TextField
-                  id='outlined'
-                  label='Type of Rooms'
-                  placeholder='Enter type of rooms'
-                  className='w-full'
+                <DropDown
+                  menuItems={["Delux", "Suite", " Twin Room ", "Double Room", " Triple Room"]}
+                  handleChange={() => { }}
+                  title='Type of Room'
+                  label='Type of Room'
                   size="small"
                 />
                 <TextField
                   id='outlined'
                   label='Number of Rooms'
-                  placeholder='Enter number of rooms'
                   className='w-full'
                   size="small"
+                  type='number'
+                  inputProps={{ min: 0, pattern: '[0-9]*' }}
                 />
                 <div className='flex flex-col space-y-5'>
                   <h2 className='text-md wider mb-4 font-[300] text-black'>
@@ -362,6 +369,8 @@ const Travel = () => {
                       placeholder='Adults'
                       className='w-[40%]'
                       size="small"
+                      type='number'
+                      inputProps={{ min: 0, pattern: '[0-9]*' }}
                     />
                     <TextField
                       id='outlined'
@@ -369,6 +378,8 @@ const Travel = () => {
                       placeholder='Children'
                       className='w-[40%]'
                       size="small"
+                      type='number'
+                      inputProps={{ min: 0, pattern: '[0-9]*' }}
                     />
                   </div>
                   <TextField
@@ -412,59 +423,93 @@ const Travel = () => {
                     label='Fuel Type'
                     value={selectedDayPackage['transport']['fuelType']}
                   />
-                  <div className='flex items-center justify-start'>
-                    <Checkbox
-                      {...label}
-                      onChange={() => {
-                        handleUpdatePackage({
-                          key1: 'transport',
-                          key2: 'flightAvailable',
-                          elem: !selectedDayPackage['transport'][
-                            'flightAvailable'
-                          ],
-                        });
-                      }}
-                      checked={
-                        selectedDayPackage['transport']['flightAvailable']
-                      }
-                    />
-                    <h3 className='text-[#707070ee]'>Flight Available</h3>
+                  <div>
+                    <div className='flex items-center justify-start space-x-4'>
+                      <Checkbox
+                        {...label}
+                        onChange={() => {
+                          handleUpdatePackage({
+                            key1: 'transport',
+                            key2: 'flightAvailable',
+                            elem: !selectedDayPackage['transport']['flightAvailable'],
+                          });
+                        }}
+                        checked={selectedDayPackage['transport']['flightAvailable']}
+                      />
+                      <h3 className='text-[#707070ee]'>Flight Available</h3>
+                    </div>
+                    <div className='flex items-center justify-between space-x-4 py-2'>
+                      <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
+                        <span className="text-[#6F7787] p-1">Queenstown</span>
+                      </div>
+                      <div>
+                        <Image height={30} width={30} src={Distance} />
+                      </div>
+                      <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
+                        <span className="text-[#6F7787] p-1">Auckland</span>
+                      </div>
+                      <div className="relative flex text-xs items-center space-x-2">
+                        <Flight style={{ color: '#707070ee', transform: 'rotate(320deg)' }} />
+                        <span className="text-lg text-[#707070ee]">3.2 hr </span>
+                      </div>
+                    </div>
                   </div>
-                  <div className='flex items-center justify-start'>
-                    <Checkbox
-                      {...label}
-                      onChange={() => {
-                        handleUpdatePackage({
-                          key1: 'transport',
-                          key2: 'baggageIncluded',
-                          elem: !selectedDayPackage['transport'][
-                            'baggageIncluded'
-                          ],
-                        });
-                      }}
-                      checked={
-                        selectedDayPackage['transport']['baggageIncluded']
-                      }
-                    />
-                    <h3 className='text-[#707070ee]'>Include baggage</h3>
+                  <div className='flex flex-col items-start justify-start'>
+                    <div className='flex items-center'>
+                      <Checkbox
+                        {...label}
+                        onChange={() => {
+                          handleUpdatePackage({
+                            key1: 'transport',
+                            key2: 'baggageIncluded',
+                            elem: !selectedDayPackage['transport']['baggageIncluded'],
+                          });
+                        }}
+                        checked={selectedDayPackage['transport']['baggageIncluded']}
+                      />
+                      <h3 className='text-[#707070ee] ml-2'>Include baggage</h3>
+                    </div>
+                    <div className='w-full py-2'>
+                      <TextField
+                        id='outlineds'
+                        label='Baggage Weight'
+                        placeholder='Baggage Weight'
+                        className='w-full'
+                        size="small"
+                      />
+                    </div>
                   </div>
-                  <div className='flex items-center justify-start'>
-                    <Checkbox
-                      {...label}
-                      onChange={() => {
-                        handleUpdatePackage({
-                          key1: 'transport',
-                          key2: 'ferryAvailable',
-                          elem: !selectedDayPackage['transport'][
-                            'ferryAvailable'
-                          ],
-                        });
-                      }}
-                      checked={
-                        selectedDayPackage['transport']['ferryAvailable']
-                      }
-                    />
-                    <h3 className='text-[#707070ee]'>Ferry Available</h3>
+
+                  <div>
+                    <div className='flex items-center justify-start space-x-4'>
+                      <Checkbox
+                        {...label}
+                        onChange={() => {
+                          handleUpdatePackage({
+                            key1: 'transport',
+                            key2: 'flightAvailable',
+                            elem: !selectedDayPackage['transport']['flightAvailable'],
+                          });
+                        }}
+                        checked={selectedDayPackage['transport']['flightAvailable']}
+                      />
+                      <h3 className='text-[#707070ee]'>Ferry Available</h3>
+                    </div>
+                    <div className='flex items-center justify-between space-x-4 py-2'>
+                      <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
+                        <span className="text-[#6F7787] p-1">Queenstown</span>
+                      </div>
+                      <div>
+                        <Image height={30} width={30} src={Distance} />
+                      </div>
+                      <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
+                        <span className="text-[#6F7787] p-1">Auckland</span>
+                      </div>
+                      <div className="relative flex text-xs items-center space-x-2">
+                        <DirectionsBoat style={{ color: '#707070ee'}} />
+                        <span className="text-lg text-[#707070ee]">3.2 hr </span>
+                      </div>
+                    </div>
                   </div>
                   <FormControl className='w-full'>
                     <OutlinedInput
