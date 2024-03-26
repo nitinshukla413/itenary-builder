@@ -22,7 +22,7 @@ const Login = (props: any) => {
 
   return (
     <div
-      className="h-screen w-full  bg-[#8dd7fe5e] bg-[url('../../public/assets/dubai.jpg')] bg-blend-overlay "
+      className="h-screen w-full  bg-[#8dd7fe5e] bg-[url('../../public/assets/dubai.webp')] bg-blend-overlay "
       style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
       <motion.div
