@@ -22,6 +22,9 @@ import { typeOfFood, typeOfFuel, typeOfVehicle } from '@/utils/constants';
 import DropDown from '@/components/dropDown';
 import Image from 'next/image';
 import { DirectionsBoat, Flight } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
+import PreviewPdf from '../previewPdf/page';
+import { pdf } from '@react-pdf/renderer';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 LicenseInfo.setLicenseKey(
@@ -74,6 +77,7 @@ const Travel = () => {
     }, 300);
   };
   const handleChangeDays = () => { };
+  const route=useRouter();
   const handleUpdatePackage = ({
     key1,
     key2,
@@ -104,11 +108,17 @@ const Travel = () => {
   };
   const [selectedFoods, setSelectedFoods] = React.useState([]);
 
-  const handleFoodSelection = (event) => {
+  const handlePreview = async () => {
+    const blob = await pdf(<PreviewPdf />).toBlob();
+    const url = URL.createObjectURL(blob);
+    window.open(url);
+  };
+
+  const handleFoodSelection = (event:any) => {
     const value = event.target.value;
-    setSelectedFoods((selected) => {
+    setSelectedFoods((selected:any) => {
       if (selected.includes(value)) {
-        return selected.filter((item) => item !== value);
+        return selected.filter((item:any) => item !== value);
       } else {
         return [...selected, value];
       }
@@ -260,7 +270,6 @@ const Travel = () => {
                           slots={{ field: SingleInputDateRangeField }}
                           name="allowedRange"
                           className='w-full'
-                          value={selectedRange}
                           onChange={handleDateRangeChange}
 
                         />
@@ -337,7 +346,7 @@ const Travel = () => {
                       <Checkbox
                         onChange={handleFoodSelection}
                         value={elem}
-                        checked={selectedFoods.includes(elem)}
+                        checked={selectedFoods.includes(elem as never)}
                       />
                       <h3 className='text-[#707070ee]'>{elem}</h3>
                     </div>
@@ -443,7 +452,7 @@ const Travel = () => {
                         <span className="text-[#6F7787] p-1">Queenstown</span>
                       </div>
                       <div>
-                        <Image height={30} width={30} src={Distance} />
+                        <Image height={30} alt='distance' width={30} src={Distance} />
                       </div>
                       <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
                         <span className="text-[#6F7787] p-1">Auckland</span>
@@ -500,13 +509,13 @@ const Travel = () => {
                         <span className="text-[#6F7787] p-1">Queenstown</span>
                       </div>
                       <div>
-                        <Image height={30} width={30} src={Distance} />
+                        <Image height={30} alt="distance" width={30} src={Distance} />
                       </div>
                       <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
                         <span className="text-[#6F7787] p-1">Auckland</span>
                       </div>
                       <div className="relative flex text-xs items-center space-x-2">
-                        <DirectionsBoat style={{ color: '#707070ee'}} />
+                        <DirectionsBoat style={{ color: '#707070ee' }} />
                         <span className="text-lg text-[#707070ee]">3.2 hr </span>
                       </div>
                     </div>
@@ -520,22 +529,17 @@ const Travel = () => {
                     />
                   </FormControl>
                 </div>
-                <div className='flex w-full justify-between'>
+                <div className='flex w-full justify-between '>
                   {!lastDay && (
-                    <div className='w-[35%]'>
-                      <CustomButton
-                        title='Save PDF'
-                        variant='secondary'
-                        onClick={() => { }}
-                      ></CustomButton>
+                    <div className='w-[45%] flex justify-between space-x-8'>
+                      <CustomButton title='Preview' variant='secondary' onClick={handlePreview} />
+                      <CustomButton title='Save PDF' variant='secondary' onClick={() => { }} />
+                    
                     </div>
                   )}
-                  <div className={` ${!lastDay ? 'w-[50%]' : 'w-full'}`}>
+                  <div className={`${!lastDay ? 'w-[50%]' : 'w-full'}`}>
                     {' '}
-                    <CustomButton
-                      title='Continue'
-                      onClick={handleContinue}
-                    ></CustomButton>
+                    <CustomButton title='Continue' onClick={handleContinue} />
                   </div>
                 </div>
               </div>
