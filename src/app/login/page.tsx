@@ -83,19 +83,8 @@ const Login = (props: any) => {
                     fontSize='large'
                     sx={{ color: '#4e4e4eee', mr: 2 }}
                   />
-                  <TextField
-                    InputLabelProps={{
-                      style: {
-                        color: '#4e4e4eee',
-                        fontWeight: 500,
-                        letterSpacing: 1,
-                      },
-                    }}
-                    id='input-with-md'
-                    label='Username'
-                    className={`w-full  text-[#4e4e4eee]`}
-                    variant='standard'
-                  />
+                  <input type="text" placeholder='Username' className="w-full bg-transparent text-black outline-none border-b focus:border-b-2 border-black focus:border-blue-500 transition-colors duration-300 ease-in-out" />
+
                 </Box>
               </motion.div>
               <motion.div
@@ -109,19 +98,9 @@ const Login = (props: any) => {
                     fontSize='large'
                     sx={{ color: '#4e4e4eee', mr: 2 }}
                   />
-                  <TextField
-                    InputLabelProps={{
-                      style: {
-                        color: '#4e4e4eee',
-                        fontWeight: 500,
-                        letterSpacing: 1,
-                      },
-                    }}
-                    id='input-with-md'
-                    label='Password'
-                    className={`w-full  text-[#4e4e4eee]`}
-                    variant='standard'
-                  />
+
+                  <input type='password' placeholder='Password' className="w-full bg-transparent text-black outline-none border-b focus:border-b-2 border-black focus:border-blue-500 transition-colors duration-300 ease-in-out" />
+
                 </Box>
               </motion.div>
             </div>
