@@ -53,7 +53,7 @@ const Summary = () => {
 
     }
     return (
-        <div className="flex justify-center border border-gray-300 items-start w-full bg-gray-200/20 flex-col p-4">
+        <div className="shadow-md flex justify-center border border-gray-300 items-start w-full bg-gray-200/20 flex-col p-4">
             <div className="flex justify-start items-center w-full text-black space-x-3 py-5 border-b-2 border-gray-300">
                 <DescriptionOutlinedIcon fontSize="medium" />
                 <h2 className="font-[600] text-lg">Summary</h2>

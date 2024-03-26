@@ -83,7 +83,7 @@ const Login = (props: any) => {
                     fontSize='large'
                     sx={{ color: '#4e4e4eee', mr: 2 }}
                   />
-                  <input type="text" placeholder='Username' className="w-full bg-transparent text-black outline-none border-b focus:border-b-2 border-black focus:border-blue-500 transition-colors duration-300 ease-in-out" />
+                  <input type="text"  placeholder='Username' className="text-lg w-full bg-transparent text-black outline-none border-b focus:border-b-2 border-black focus:border-blue-500 transition-colors duration-300 ease-in-out" />
 
                 </Box>
               </motion.div>
@@ -99,7 +99,7 @@ const Login = (props: any) => {
                     sx={{ color: '#4e4e4eee', mr: 2 }}
                   />
 
-                  <input type='password' placeholder='Password' className="w-full bg-transparent text-black outline-none border-b focus:border-b-2 border-black focus:border-blue-500 transition-colors duration-300 ease-in-out" />
+                  <input type='password' placeholder='Password' className="text-lg w-full bg-transparent text-black outline-none border-b focus:border-b-2 border-black focus:border-blue-500 transition-colors duration-300 ease-in-out" />
 
                 </Box>
               </motion.div>

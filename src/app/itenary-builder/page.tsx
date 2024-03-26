@@ -14,7 +14,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Travel = () => {
   const [noOfDays, setNoOfDays] = useState<any[]>([0, 1, 2, 3, 4, 5]);
-
+  const scrollContainerRef = useRef(null); // Create a ref for the scroll container
   const [selectedDayPackage, setSelectedDayPackage] = useState<any>({
     city: '',
     acitivity: '',
@@ -49,6 +49,13 @@ const Travel = () => {
     let updatedDays = [...noOfDays];
     updatedDays.push(noOfDays?.length);
     setNoOfDays(updatedDays);
+    setSelectedDay(updatedDays.length-1)
+  setTimeout(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.scrollLeft =( container?.scrollWidth - container?.clientWidth)
+    }
+  }, 300);
   };
   const handleChangeDays = () => { };
   const handleUpdatePackage = ({ key1, key2, elem }: { key1: any, key2: any, elem: any }) => {
@@ -63,10 +70,15 @@ const Travel = () => {
   const lastDay = selectedDay === noOfDays?.length - 1
   return (
     <div className=" w-[100vw] flex justify-center bg-[#F7F7F9]  item-center">
-      <div className="w-[80%]  max-md:w-full h-full p-10 max-md:p-2 max-md:p-2">
+      <div className="w-[80%]  max-md:w-full h-full p-10 max-md:p-2">
         {/* header */}
         <div className="flex justify-center items-center space-x-[10px] max-md:space-x-2 w-full">
-          <div className="flex rounded-3xl w-full overflow-x-scroll scrollbar-hide no-scrollbar bg-gray-200 justify-between items-center">
+          <div
+           ref={scrollContainerRef} 
+           style={{
+            scrollbarWidth:'none'
+           }}
+          className="shadow-md flex rounded-3xl w-full overflow-x-scroll scrollbar-hide no-scrollbar bg-gray-200 justify-between items-center">
             {noOfDays?.map((no: any) => {
               let value = `Day ${no}`;
               if (no === 0) {
@@ -92,7 +104,7 @@ const Travel = () => {
           <AddIcon
             onClick={handleAdd}
             fontSize="large"
-            className={`cursor-pointer text-white rounded-3xl flex justify-center items-center bg-[#4D9FD7]`}
+            className={`shadow-lg cursor-pointer text-white rounded-3xl flex justify-center items-center bg-[#4D9FD7]`}
           />
         </div>
         {/* header */}
