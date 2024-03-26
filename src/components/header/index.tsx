@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from 'next/navigation'
 import MenuIcon from '@mui/icons-material/Menu';
 import Image from "next/image";
-import Logo from '../../../public/travel-logo.gif'
+import Logo from '../../../public/tara-logo.svg'
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon } from "@mui/material";
 import { useState } from "react";
 const Header = () => {
@@ -41,17 +41,14 @@ const Header = () => {
         </Drawer>
         <div className='flex'>
             <div
-                className="flex justify-end items-end">
+                className="flex justify-end items-end p-5 ">
                 <div
                     data-aos={'fade-in'}
-                    className={`h-30 w-20 `}>
+                    className={`h-30 w-20`}>
                     <Image
                         src={Logo} alt="image" objectFit="contain" className='w-full h-full' />
                 </div>
-                <div data-aos={'zoom-out'} data-aos-offset="0" data-aos-delay="300" className={`flex -ml-5 -mb-2 relative flex-col justify-center items-center`}>
-                    <h2 className={`font-[700] text-[#4e4e4eee]  text-md tracking-[5px] `}>Tara</h2>
-                    <h2 className={`text-[#5d5d5dee] text-md tracking-widest -mt-1`}>Travels</h2>
-                </div>
+             
             </div>
         </div>
         <div className="flex max-md:hidden w-[70%] justify-end space-x-20 items-center">
