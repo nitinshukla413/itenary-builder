@@ -18,7 +18,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const Travel = () => {
   const [noOfDays, setNoOfDays] = useState<any[]>([0, 1, 2, 3, 4, 5]);
-  const scrollContainerRef = useRef(null); // Create a ref for the scroll container
+  const scrollContainerRef = useRef<any>(null); // Create a ref for the scroll container
   const [selectedDayPackage, setSelectedDayPackage] = useState<any>({
     city: '',
     acitivity: '',
