@@ -61,7 +61,7 @@ const Travel = () => {
       }
     }, 300);
   };
-  const handleChangeDays = () => {};
+  const handleChangeDays = () => { };
   const handleUpdatePackage = ({
     key1,
     key2,
@@ -79,9 +79,17 @@ const Travel = () => {
     if (selectedDay < noOfDays?.length - 1) setSelectedDay(selectedDay + 1);
   };
   const lastDay = selectedDay === noOfDays?.length - 1;
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleCheckboxChange = (option:any) => {
+    setSelectedOption(option);
+  };
+
+
   return (
     <div className=' item-center flex w-[100vw] justify-center  bg-[#F7F7F9]'>
-      <div className='h-full  w-[80%] p-10 max-md:w-full max-md:p-2 max-md:py-10'>
+      <div className='h-full  w-[80%] py-20 max-md:w-full max-md:p-2 max-md:py-10'>
         {/* header */}
         <div className='flex w-full items-center justify-center  space-x-[10px] max-md:space-x-2'>
           <div
@@ -100,14 +108,12 @@ const Travel = () => {
                 <div
                   key={no}
                   onClick={() => handleSelect(no)}
-                  className={`hover:bg-[#c7e3f7] hover:text-white flex min-w-60 cursor-pointer items-center justify-center  rounded-3xl p-3 max-md:min-w-full max-md:p-2 ${
-                    selectedDay === no ? 'bg-[#4D9FD7]' : 'bg-gray-200 '
-                  }`}
+                  className={`flex min-w-60 cursor-pointer items-center justify-center  rounded-3xl p-3 max-md:min-w-full max-md:p-2 ${selectedDay === no ? 'bg-[#4D9FD7]' : 'bg-gray-200 '
+                    }`}
                 >
                   <h3
-                    className={`text-center text-lg font-[400] text-black ${
-                      selectedDay === no ? 'text-white' : ''
-                    }`}
+                    className={`text-center text-lg font-[400] text-black ${selectedDay === no ? 'text-white' : ''
+                      }`}
                   >
                     {value}
                   </h3>
@@ -122,7 +128,6 @@ const Travel = () => {
             onClick={handleAdd}
             fontSize='medium'
           />
-          </div>
         </div>
         {/* header */}
         <div className='my-10 flex flex-row items-start justify-between max-md:my-5 max-md:flex-col max-md:items-center max-md:justify-center'>
@@ -135,23 +140,28 @@ const Travel = () => {
                 <h2 className='mb-2 text-lg font-[600] text-black'>
                   Choose your logo
                 </h2>
-                <div className='relative -left-2 mb-10 max-md:left-0 '>
+                <div className='relative -left-2 mb-10 max-md:left-0'>
                   <div className='flex items-center justify-start'>
-                    <Checkbox {...label} defaultChecked />
+                    <Checkbox
+                      
+                      checked={selectedOption === 'Continue'}
+                      onChange={() => handleCheckboxChange('Continue')}
+                    />
                     <h3 className='text-[#707070ee]'>
                       Continue with Tara Travel logo
                     </h3>
                   </div>
                   <div className='flex items-center justify-start'>
-                    <Checkbox {...label} defaultChecked />
+                    <Checkbox
+                   
+                      checked={selectedOption === 'Custom'}
+                      onChange={() => handleCheckboxChange('Custom')}
+                    />
                     <h3 className='text-[#707070ee]'>Add Custom</h3>
                   </div>
                   <div className='w-full px-3'>
-                    <label className=' flex w-[45%] cursor-pointer items-center  justify-center space-x-3 bg-gray-200/70 text-white shadow-sm '>
-                      <AttachFileIcon
-                        fontSize='small'
-                        className='text-[#707070ee]'
-                      />
+                    <label className='flex w-[45%] cursor-pointer items-center justify-center space-x-3 bg-gray-200/70 text-white shadow-sm'>
+                      <AttachFileIcon fontSize='small' className='text-[#707070ee]' />
                       <h1 className='cursor-pointer rounded px-4 py-2 text-[#707070ee]'>
                         Upload logo
                       </h1>
@@ -258,14 +268,14 @@ const Travel = () => {
                   </h2>
                   <DropDown
                     menuItems={['Paris', 'Italy']}
-                    handleChange={(event: any) => {}}
+                    handleChange={(event: any) => { }}
                     title='Select City'
                     label='Select City'
                     size="small"
                   />
                   <DropDown
                     menuItems={['ParaCelling', 'Jumping']}
-                    handleChange={() => {}}
+                    handleChange={() => { }}
                     title='Activities'
                     label='Activities'
                     size="small"
@@ -452,7 +462,7 @@ const Travel = () => {
                       <CustomButton
                         title='Save PDF'
                         variant='secondary'
-                        onClick={() => {}}
+                        onClick={() => { }}
                       ></CustomButton>
                     </div>
                   )}

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from 'next/navigation'
 import MenuIcon from '@mui/icons-material/Menu';
 import Image from "next/image";
-import Logo from '../../../public/travel-tara.png'
+import Logo from '../../../public/travel-logo.gif'
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon } from "@mui/material";
 import { useState } from "react";
 const Header = () => {

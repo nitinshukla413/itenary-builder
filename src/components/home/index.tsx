@@ -71,17 +71,12 @@ const LinkStyled = styled(Link)(({ theme }) => ({
 
 // ** renders client column
 const renderClient = (row: any) => {
-    if (row.avatar.length) {
-        return <Avatar sx={{ bgcolor: row.color }} className='text-sm'>
-            {row.avatar[0] + row.avatar[1]}
-        </Avatar>
-    } else {
+   
         return (
-            <AccountCircleIcon
-                fontSize='large' className='text-black' />
+           <></>
         )
     }
-}
+
 
 const RowOptions = ({ id }: { id: number | string }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -267,8 +262,8 @@ const HomeComponent = () => {
 
 
     return (
-        <div className='w-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl bg-white '>
-            <CardHeader title='Passenger Details' className='font-[900] text-[#696969ee]'  sx={{  px:4,py:3,'& .MuiCardHeader-title': { letterSpacing: '.15px' } }} />
+        <div className='w-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] justify-center items-center rounded-xl bg-white '>
+            <CardHeader title='Customer Details' className='font-[900] text-[#696969ee'  sx={{  px:4,py:3,'& .MuiCardHeader-title': { letterSpacing: '.15px' } }} />
             <Divider />
             <TableHeader value={value} handleFilter={handleFilter} toggle={toggleAddUserDrawer} />
             <DataGrid
