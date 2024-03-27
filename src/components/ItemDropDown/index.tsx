@@ -75,7 +75,7 @@ export default function CustomMenu({children,menuItems,onClick}:{onClick:any,chi
       <DropdownContext.Provider value={dropdownContextValue}>
       <MenuButton> {children}</MenuButton>  
         <Menu id="hooks-menu" >
-         {menuItems?.map(menu=> <MenuItem  onClick={()=>{
+         {menuItems?.map((menu,i)=> <MenuItem key={i} onClick={()=>{
             createHandleMenuClick('OS Default')
             onClick(menu)
          }}>

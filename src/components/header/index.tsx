@@ -93,8 +93,8 @@ const Header = () => {
                                     if (nav?.sublinks) {
                                         const isActive = pathName.includes('admin')
                                         return (
-                                            <div>
-                                                <CustomMenu menuItems={nav?.sublinks}
+                                            <div  key={index} >
+                                                <CustomMenu key={index} menuItems={nav?.sublinks}
                                                     onClick={(val: { link: string }) => {
                                                         router.push(val.link)
                                                     }

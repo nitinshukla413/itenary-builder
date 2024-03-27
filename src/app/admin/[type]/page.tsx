@@ -38,7 +38,7 @@ const AdminForms = () => {
     <Layout>
       <div className="w-full max-md:w-full flex justify-center  item-center ">
         <div className='flex pt-20  flex-col items-center space-y-10 max-md:hidden justify-start'>
-          {[{ Icon: HotelIcon, link: '/admin/hotel' }, { Icon: AddLocationIcon, link: '/admin/destination' }, { Icon: RowingIcon, link: '/admin/activity' }].map(({ Icon, link }) => <div className='flex flex-col justify-center items-center'><div onClick={() => { handleOnClick(link) }} className=' hover:scale-110 hover:bg-black cursor-pointer flex justify-center items-center rounded-[50px] p-8 h-10 w-10 bg-[#4D9FD7]'>
+          {[{ Icon: HotelIcon, link: '/admin/hotel' }, { Icon: AddLocationIcon, link: '/admin/destination' }, { Icon: RowingIcon, link: '/admin/activity' }].map(({ Icon, link },i) => <div  key={i}  className='flex flex-col justify-center items-center'><div onClick={() => { handleOnClick(link) }} className=' hover:scale-110 hover:bg-black cursor-pointer flex justify-center items-center rounded-[50px] p-8 h-10 w-10 bg-[#4D9FD7]'>
             <Icon className="text-white " fontSize='large'></Icon>
           </div>
           </div>
