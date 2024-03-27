@@ -138,7 +138,7 @@ const Header = () => {
                         </button>
                         <div className="border-l-[2px] max-md:hidden max-md:px-2 px-5 cursor-pointer border-[#d8d8d8] ">
                             <div>
-                                <CustomMenu menuItems={[{ title: 'Logout', link: '/login' }, { title: 'My Profile', link: '/profile' }]}
+                                <CustomMenu menuItems={[ { title: 'My Profile', link: '/profile' },{ title: 'Logout', link: '/login' }]}
                                     onClick={(av: { title: string, link: string }) => {
                                         if (av.link.includes('logout')) {
                                             localStorage.removeItem('login')
