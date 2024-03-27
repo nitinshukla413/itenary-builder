@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Summary from '@/components/summary';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -8,13 +8,28 @@ import Checkbox from '@mui/material/Checkbox';
 import CustomButton from '../../components/button';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { SingleInputDateRangeField } from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
+import { LicenseInfo } from "@mui/x-license";
+import Distance from "../../../public/assets/distance.svg"
 import {
   FormControl,
   OutlinedInput,
 } from '@mui/material';
 import { typeOfFood, typeOfFuel, typeOfVehicle } from '@/utils/constants';
 import DropDown from '@/components/dropDown';
+import Image from 'next/image';
+import { DirectionsBoat, Flight } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
+import PreviewPdf from '../previewPdf/page';
+import { pdf } from '@react-pdf/renderer';
+
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+LicenseInfo.setLicenseKey(
+  'x0jTPl0USVkVZV0SsMjM1kDNyADM5cjM2ETPZJVSQhVRsIDN0YTM6IVREJ1T0b9586ef25c9853decfa7709eee27a1e',
+);
 
 const Travel = () => {
   const [noOfDays, setNoOfDays] = useState<any[]>([0, 1, 2, 3, 4, 5]);
@@ -49,6 +64,7 @@ const Travel = () => {
   const handleSelect = (val: any) => {
     setSelectedDay(val);
   };
+ 
   const handleAdd = () => {
     let updatedDays = [...noOfDays];
     updatedDays.push(noOfDays?.length);
@@ -61,7 +77,8 @@ const Travel = () => {
       }
     }, 300);
   };
-  const handleChangeDays = () => {};
+  const handleChangeDays = () => { };
+  const route=useRouter();
   const handleUpdatePackage = ({
     key1,
     key2,
@@ -79,9 +96,42 @@ const Travel = () => {
     if (selectedDay < noOfDays?.length - 1) setSelectedDay(selectedDay + 1);
   };
   const lastDay = selectedDay === noOfDays?.length - 1;
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleCheckboxChange = (option: any) => {
+    setSelectedOption(option);
+  };
+  const [selectedRange, setSelectedRange] = useState([null, null]);
+
+  const handleDateRangeChange = (newRange: any) => {
+    setSelectedRange(newRange);
+  };
+  const [selectedFoods, setSelectedFoods] = React.useState([]);
+
+  const handlePreview = async () => {
+    const blob = await pdf(<PreviewPdf />).toBlob();
+    const url = URL.createObjectURL(blob);
+    window.open(url);
+  };
+
+  const handleFoodSelection = (event:any) => {
+    const value = event.target.value;
+    setSelectedFoods((selected:any) => {
+      if (selected.includes(value)) {
+        return selected.filter((item:any) => item !== value);
+      } else {
+        return [...selected, value];
+      }
+    });
+  };
+
+  useEffect(()=>{
+    handlePreview()
+  },[])
   return (
     <div className=' item-center flex w-[100vw] justify-center  bg-[#F7F7F9]'>
-      <div className='h-full  w-[80%] p-10 max-md:w-full max-md:p-2 max-md:py-10'>
+      <div className='h-full  w-[80%] py-20 max-md:w-full max-md:p-2 max-md:py-10'>
         {/* header */}
         <div className='flex w-full items-center justify-center  space-x-[10px] max-md:space-x-2'>
           <div
@@ -100,14 +150,12 @@ const Travel = () => {
                 <div
                   key={no}
                   onClick={() => handleSelect(no)}
-                  className={`flex min-w-60 cursor-pointer items-center justify-center  rounded-3xl p-3 max-md:min-w-full max-md:p-2 ${
-                    selectedDay === no ? 'bg-[#4D9FD7]' : 'bg-gray-200 '
-                  }`}
+                  className={`flex min-w-60 cursor-pointer items-center justify-center  rounded-3xl p-3 max-md:min-w-full max-md:p-2 ${selectedDay === no ? 'bg-[#4D9FD7]' : 'bg-gray-200 '
+                    }`}
                 >
                   <h3
-                    className={`text-center text-lg font-[400] text-black ${
-                      selectedDay === no ? 'text-white' : ''
-                    }`}
+                    className={`text-center text-lg font-[400] text-black ${selectedDay === no ? 'text-white' : ''
+                      }`}
                   >
                     {value}
                   </h3>
@@ -115,11 +163,14 @@ const Travel = () => {
               );
             })}
           </div>
-          <AddIcon
-            onClick={handleAdd}
-            fontSize='large'
-            className={`flex cursor-pointer items-center justify-center rounded-3xl bg-[#4D9FD7] text-white shadow-lg`}
-          />
+          <div
+            className={`flex cursor-pointer items-center justify-center  w-10 h-10 rounded-3xl bg-[#4D9FD7] text-white shadow-lg`}
+          >
+            <AddIcon
+              onClick={handleAdd}
+              fontSize='medium'
+            />
+          </div>
         </div>
         {/* header */}
         <div className='my-10 flex flex-row items-start justify-between max-md:my-5 max-md:flex-col max-md:items-center max-md:justify-center'>
@@ -132,23 +183,28 @@ const Travel = () => {
                 <h2 className='mb-2 text-lg font-[600] text-black'>
                   Choose your logo
                 </h2>
-                <div className='relative -left-2 mb-10 max-md:left-0 '>
+                <div className='relative -left-2 mb-10 max-md:left-0'>
                   <div className='flex items-center justify-start'>
-                    <Checkbox {...label} defaultChecked />
+                    <Checkbox
+
+                      checked={selectedOption === 'Continue'}
+                      onChange={() => handleCheckboxChange('Continue')}
+                    />
                     <h3 className='text-[#707070ee]'>
                       Continue with Tara Travel logo
                     </h3>
                   </div>
                   <div className='flex items-center justify-start'>
-                    <Checkbox {...label} defaultChecked />
+                    <Checkbox
+
+                      checked={selectedOption === 'Custom'}
+                      onChange={() => handleCheckboxChange('Custom')}
+                    />
                     <h3 className='text-[#707070ee]'>Add Custom</h3>
                   </div>
                   <div className='w-full px-3'>
-                    <label className=' flex w-[45%] cursor-pointer items-center  justify-center space-x-3 bg-gray-200/70 text-white shadow-sm '>
-                      <AttachFileIcon
-                        fontSize='small'
-                        className='text-[#707070ee]'
-                      />
+                    <label className='flex w-[45%] cursor-pointer items-center justify-center space-x-3 bg-gray-200/70 text-white shadow-sm'>
+                      <AttachFileIcon fontSize='small' className='text-[#707070ee]' />
                       <h1 className='cursor-pointer rounded px-4 py-2 text-[#707070ee]'>
                         Upload logo
                       </h1>
@@ -159,24 +215,23 @@ const Travel = () => {
                 <div className='mb-10 w-[60%] space-y-10'>
                   <div>
                     <h2 className='mb-4 text-lg font-bold tracking-[0.6px] text-black'>
-                      Company Name
+                      Vendor Name
                     </h2>
                     <TextField
                       id='outlined'
-                      label='Name of company'
-                      placeholder='Enter name of company'
+                      label='Name of Vendor'
                       className='w-full'
                       size='small'
                     />
                   </div>
                   <div>
                     <h2 className='mb-4 text-lg font-bold tracking-[0.6px]  text-black'>
-                      Company Email
+                      Vendor Email
                     </h2>
                     <TextField
                       id='outlined'
                       label='Email'
-                      placeholder='Enter email'
+
                       className='w-full'
                       size='small'
                     />
@@ -188,7 +243,7 @@ const Travel = () => {
                     <TextField
                       id='outlined'
                       label='Contact number'
-                      placeholder='Enter contact number'
+
                       className='w-full'
                       size='small'
                     />
@@ -207,25 +262,28 @@ const Travel = () => {
                   </div>
                   <div>
                     <h2 className='wider mb-5 text-lg font-[600] text-black'>
-                      Selected Date
+                      Select Dates
                     </h2>
                     {/* <DatePicker label="Basic date picker" /> */}
                     <div className='flex w-[80%] cursor-pointer  items-center justify-center space-x-3 bg-gray-200/70'>
-                      <CalendarMonthIcon
-                        fontSize='small'
-                        className='text-[#707070ee]'
-                      />
-                      <h1 className='cursor-pointer rounded px-4 py-2 text-[#707070ee]'>
-                        Select dates
-                      </h1>
-                      <input id='file-upload' type='file' className='hidden' />
+
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+                        <DateRangePicker
+                          slots={{ field: SingleInputDateRangeField }}
+                          name="allowedRange"
+                          className='w-full'
+                          onChange={handleDateRangeChange}
+
+                        />
+
+                      </LocalizationProvider>
                     </div>
                   </div>
                   <div className='mb-10 flex w-full justify-between'>
                     <TextField
                       id='outlined'
                       label='Days'
-                      placeholder='Days'
                       className='w-[40%]'
                       type='number'
                       size='small'
@@ -254,15 +312,15 @@ const Travel = () => {
                     City
                   </h2>
                   <DropDown
-                    menuItems={['Paris', 'Italy']}
-                    handleChange={(event: any) => {}}
+                    menuItems={['Auckland', 'Dunedin', "Hamilton", "Rotorua", "Wellington"]}
+                    handleChange={(event: any) => { }}
                     title='Select City'
                     label='Select City'
                     size="small"
                   />
                   <DropDown
-                    menuItems={['ParaCelling', 'Jumping']}
-                    handleChange={() => {}}
+                    menuItems={["Sky Tower", "Avon River", " Wellington Museum ", "Harbor City", " Wildlife Sanctuary"]}
+                    handleChange={() => { }}
                     title='Activities'
                     label='Activities'
                     size="small"
@@ -289,35 +347,28 @@ const Travel = () => {
                   ].map((elem, i) => (
                     <div key={i} className='flex items-center justify-start'>
                       <Checkbox
-                        {...label}
-                        onChange={() =>
-                          handleUpdatePackage({
-                            key1: 'accomodation',
-                            key2: 'food',
-                            elem: elem,
-                          })
-                        }
-                        checked={
-                          selectedDayPackage['accomodation']['food'] === elem
-                        }
+                        onChange={handleFoodSelection}
+                        value={elem}
+                        checked={selectedFoods.includes(elem as never)}
                       />
                       <h3 className='text-[#707070ee]'>{elem}</h3>
                     </div>
                   ))}
                 </div>
-                <TextField
-                  id='outlined'
-                  label='Type of Rooms'
-                  placeholder='Enter type of rooms'
-                  className='w-full'
+                <DropDown
+                  menuItems={["Delux", "Suite", " Twin Room ", "Double Room", " Triple Room"]}
+                  handleChange={() => { }}
+                  title='Type of Room'
+                  label='Type of Room'
                   size="small"
                 />
                 <TextField
                   id='outlined'
                   label='Number of Rooms'
-                  placeholder='Enter number of rooms'
                   className='w-full'
                   size="small"
+                  type='number'
+                  inputProps={{ min: 0, pattern: '[0-9]*' }}
                 />
                 <div className='flex flex-col space-y-5'>
                   <h2 className='text-md wider mb-4 font-[300] text-black'>
@@ -330,6 +381,8 @@ const Travel = () => {
                       placeholder='Adults'
                       className='w-[40%]'
                       size="small"
+                      type='number'
+                      inputProps={{ min: 0, pattern: '[0-9]*' }}
                     />
                     <TextField
                       id='outlined'
@@ -337,6 +390,8 @@ const Travel = () => {
                       placeholder='Children'
                       className='w-[40%]'
                       size="small"
+                      type='number'
+                      inputProps={{ min: 0, pattern: '[0-9]*' }}
                     />
                   </div>
                   <TextField
@@ -380,59 +435,93 @@ const Travel = () => {
                     label='Fuel Type'
                     value={selectedDayPackage['transport']['fuelType']}
                   />
-                  <div className='flex items-center justify-start'>
-                    <Checkbox
-                      {...label}
-                      onChange={() => {
-                        handleUpdatePackage({
-                          key1: 'transport',
-                          key2: 'flightAvailable',
-                          elem: !selectedDayPackage['transport'][
-                            'flightAvailable'
-                          ],
-                        });
-                      }}
-                      checked={
-                        selectedDayPackage['transport']['flightAvailable']
-                      }
-                    />
-                    <h3 className='text-[#707070ee]'>Flight Available</h3>
+                  <div>
+                    <div className='flex items-center justify-start space-x-4'>
+                      <Checkbox
+                        {...label}
+                        onChange={() => {
+                          handleUpdatePackage({
+                            key1: 'transport',
+                            key2: 'flightAvailable',
+                            elem: !selectedDayPackage['transport']['flightAvailable'],
+                          });
+                        }}
+                        checked={selectedDayPackage['transport']['flightAvailable']}
+                      />
+                      <h3 className='text-[#707070ee]'>Flight Available</h3>
+                    </div>
+                    <div className='flex items-center justify-between space-x-4 py-2'>
+                      <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
+                        <span className="text-[#6F7787] p-1">Queenstown</span>
+                      </div>
+                      <div>
+                        <Image height={30} alt='distance' width={30} src={Distance} />
+                      </div>
+                      <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
+                        <span className="text-[#6F7787] p-1">Auckland</span>
+                      </div>
+                      <div className="relative flex text-xs items-center space-x-2">
+                        <Flight style={{ color: '#707070ee', transform: 'rotate(320deg)' }} />
+                        <span className="text-lg text-[#707070ee]">3.2 hr </span>
+                      </div>
+                    </div>
                   </div>
-                  <div className='flex items-center justify-start'>
-                    <Checkbox
-                      {...label}
-                      onChange={() => {
-                        handleUpdatePackage({
-                          key1: 'transport',
-                          key2: 'baggageIncluded',
-                          elem: !selectedDayPackage['transport'][
-                            'baggageIncluded'
-                          ],
-                        });
-                      }}
-                      checked={
-                        selectedDayPackage['transport']['baggageIncluded']
-                      }
-                    />
-                    <h3 className='text-[#707070ee]'>Include baggage</h3>
+                  <div className='flex flex-col items-start justify-start'>
+                    <div className='flex items-center'>
+                      <Checkbox
+                        {...label}
+                        onChange={() => {
+                          handleUpdatePackage({
+                            key1: 'transport',
+                            key2: 'baggageIncluded',
+                            elem: !selectedDayPackage['transport']['baggageIncluded'],
+                          });
+                        }}
+                        checked={selectedDayPackage['transport']['baggageIncluded']}
+                      />
+                      <h3 className='text-[#707070ee] ml-2'>Include baggage</h3>
+                    </div>
+                    <div className='w-full py-2'>
+                      <TextField
+                        id='outlineds'
+                        label='Baggage Weight'
+                        placeholder='Baggage Weight'
+                        className='w-full'
+                        size="small"
+                      />
+                    </div>
                   </div>
-                  <div className='flex items-center justify-start'>
-                    <Checkbox
-                      {...label}
-                      onChange={() => {
-                        handleUpdatePackage({
-                          key1: 'transport',
-                          key2: 'ferryAvailable',
-                          elem: !selectedDayPackage['transport'][
-                            'ferryAvailable'
-                          ],
-                        });
-                      }}
-                      checked={
-                        selectedDayPackage['transport']['ferryAvailable']
-                      }
-                    />
-                    <h3 className='text-[#707070ee]'>Ferry Available</h3>
+
+                  <div>
+                    <div className='flex items-center justify-start space-x-4'>
+                      <Checkbox
+                        {...label}
+                        onChange={() => {
+                          handleUpdatePackage({
+                            key1: 'transport',
+                            key2: 'flightAvailable',
+                            elem: !selectedDayPackage['transport']['flightAvailable'],
+                          });
+                        }}
+                        checked={selectedDayPackage['transport']['flightAvailable']}
+                      />
+                      <h3 className='text-[#707070ee]'>Ferry Available</h3>
+                    </div>
+                    <div className='flex items-center justify-between space-x-4 py-2'>
+                      <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
+                        <span className="text-[#6F7787] p-1">Queenstown</span>
+                      </div>
+                      <div>
+                        <Image height={30} alt="distance" width={30} src={Distance} />
+                      </div>
+                      <div className="relative flex items-center rounded-3xl bg-gray-900/10 py-1.5 px-3 text-xs uppercase text-gray-900">
+                        <span className="text-[#6F7787] p-1">Auckland</span>
+                      </div>
+                      <div className="relative flex text-xs items-center space-x-2">
+                        <DirectionsBoat style={{ color: '#707070ee' }} />
+                        <span className="text-lg text-[#707070ee]">3.2 hr </span>
+                      </div>
+                    </div>
                   </div>
                   <FormControl className='w-full'>
                     <OutlinedInput
@@ -443,22 +532,17 @@ const Travel = () => {
                     />
                   </FormControl>
                 </div>
-                <div className='flex w-full justify-between'>
+                <div className='flex w-full justify-between '>
                   {!lastDay && (
-                    <div className='w-[35%]'>
-                      <CustomButton
-                        title='Save PDF'
-                        variant='secondary'
-                        onClick={() => {}}
-                      ></CustomButton>
+                    <div className='w-[45%] flex justify-between space-x-8'>
+                      <CustomButton title='Preview' variant='secondary' onClick={handlePreview} />
+                      <CustomButton title='Save PDF' variant='secondary' onClick={() => { }} />
+                    
                     </div>
                   )}
-                  <div className={` ${!lastDay ? 'w-[50%]' : 'w-full'}`}>
+                  <div className={`${!lastDay ? 'w-[50%]' : 'w-full'}`}>
                     {' '}
-                    <CustomButton
-                      title='Continue'
-                      onClick={handleContinue}
-                    ></CustomButton>
+                    <CustomButton title='Continue' onClick={handleContinue} />
                   </div>
                 </div>
               </div>

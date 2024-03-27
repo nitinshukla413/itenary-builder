@@ -3,14 +3,10 @@ import { useState, MouseEvent, useCallback } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
-import { GetStaticProps, InferGetStaticPropsType } from 'next/types'
 
-import Avatar from '@mui/material/Avatar';
 // ** MUI Imports
 import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
 import Menu from '@mui/material/Menu'
-import Grid from '@mui/material/Grid'
 import Divider from '@mui/material/Divider'
 import { styled } from '@mui/material/styles'
 import MenuItem from '@mui/material/MenuItem'
@@ -18,14 +14,11 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import { SelectChangeEvent } from '@mui/material/Select'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import TableHeader from './tableHeader'
-import IconifyIcon from '../Icon'
 import Chip from '../customChip'
 import { store } from './dummy-data';
 import AddDrawer from '../addDrawer';
@@ -70,18 +63,6 @@ const LinkStyled = styled(Link)(({ theme }) => ({
 
 
 // ** renders client column
-const renderClient = (row: any) => {
-    if (row.avatar.length) {
-        return <Avatar sx={{ bgcolor: row.color }} className='text-sm'>
-            {row.avatar[0] + row.avatar[1]}
-        </Avatar>
-    } else {
-        return (
-            <AccountCircleIcon
-                fontSize='large' className='text-black' />
-        )
-    }
-}
 
 const RowOptions = ({ id }: { id: number | string }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -101,7 +82,7 @@ const RowOptions = ({ id }: { id: number | string }) => {
     return (
         <>
             <IconButton size='small' onClick={handleRowOptionsClick}>
-                <MoreVertIcon fontSize='large' className='text-black' />
+                <MoreVertIcon fontSize='small' className='text-black' />
             </IconButton>
             <Menu
                 keepMounted
@@ -124,7 +105,7 @@ const RowOptions = ({ id }: { id: number | string }) => {
                     onClick={handleRowOptionsClose}
                     href='/apps/user/view/overview/'
                 >
-                    <RemoveRedEyeIcon fontSize='small' className="text-black" />
+                <RemoveRedEyeIcon fontSize='small' className="text-black" />
                     View
                 </MenuItem>
                 <MenuItem onClick={handleRowOptionsClose} sx={{ '& svg': { mr: 2 } }}>
@@ -150,7 +131,7 @@ const columns: GridColDef[] = [
         renderCell: ({ row }: CellType) => {
             const { fullName } = row
             return (
-                <Box sx={{ display: 'flex', alignItems: 'center' }} className="px-10">
+                <Box sx={{ display: 'flex', alignItems: 'center' }} className="px-5">
                     <h2>{row.id + 1}</h2>
                 </Box>
             )
@@ -158,21 +139,32 @@ const columns: GridColDef[] = [
     },
     {
         flex: 0.2,
-        minWidth: 230,
+        minWidth: 200,
         field: 'fullName',
         headerName: 'Passenger Name',
         renderCell: ({ row }: CellType) => {
             const { fullName } = row
             return (
-                <Box sx={{ display: 'flex', alignItems: 'center' }} className="px-10">
-                    {renderClient(row)}
-                    <Box sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }} className="ml-3">
-                        <LinkStyled href='#' className='mx-2'>{fullName}</LinkStyled>
-                    </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                 <LinkStyled href='#' className='mx-2'>{fullName}</LinkStyled>
                 </Box>
             )
         }
     },
+    // {
+    //     flex: 0.2,
+    //     minWidth: 200,
+    //     field: 'fullName',
+    //     headerName: 'Passenger Name',
+    //     renderCell: ({ row }: CellType) => {
+    //         const { fullName } = row
+    //         return (
+    //             <Box sx={{ display: 'flex', alignItems: 'center',backgroundColor:'red' }} className="px-10">
+    //                     <LinkStyled href='#' className='mx-2'>{fullName}</LinkStyled>
+    //             </Box>
+    //         )
+    //     }
+    // },
     {
         flex: 0.1,
         minWidth: 100,
@@ -267,8 +259,8 @@ const HomeComponent = () => {
 
 
     return (
-        <div className='w-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl bg-white '>
-            <CardHeader title='Passenger Details' className='font-[900] text-[#696969ee]'  sx={{  px:4,py:3,'& .MuiCardHeader-title': { letterSpacing: '.15px' } }} />
+        <div className='w-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] justify-center items-center rounded-xl bg-white '>
+            <CardHeader title='Customer Details' className='font-[900] text-[#696969ee]'  sx={{  px:4,py:3,'& .MuiCardHeader-title': { letterSpacing: '.15px' } }} />
             <Divider />
             <TableHeader value={value} handleFilter={handleFilter} toggle={toggleAddUserDrawer} />
             <DataGrid

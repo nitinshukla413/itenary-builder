@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+import "../../tailwind.config";
 
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AppRouterCacheProvider options={{ key: 'css' }}>
-        <body className={'flex flex-col justify-center bg-[#F7F7F9]'}>
+        <body className={'flex flex-col justify-center bg-[#fff]'}>
           <Header />
             {children}
         </body>
