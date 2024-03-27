@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Summary from '@/components/summary';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -64,6 +64,7 @@ const Travel = () => {
   const handleSelect = (val: any) => {
     setSelectedDay(val);
   };
+ 
   const handleAdd = () => {
     let updatedDays = [...noOfDays];
     updatedDays.push(noOfDays?.length);
@@ -125,7 +126,9 @@ const Travel = () => {
     });
   };
 
-
+  useEffect(()=>{
+    handlePreview()
+  },[])
   return (
     <div className=' item-center flex w-[100vw] justify-center  bg-[#F7F7F9]'>
       <div className='h-full  w-[80%] py-20 max-md:w-full max-md:p-2 max-md:py-10'>
