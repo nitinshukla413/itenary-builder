@@ -97,7 +97,7 @@ const PreviewPdf = () => {
                         </Text>
                     </View>
                     <Image
-                        src={"https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+                        src={"https://images.unsplash.com/photo-1517800497904-3253a0f38be5?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
                         style={styles.image1}
                     />
                 </View>
