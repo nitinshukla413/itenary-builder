@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Summary from '@/components/summary';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -126,9 +126,6 @@ const Travel = () => {
     });
   };
 
-  useEffect(()=>{
-    handlePreview()
-  },[])
   return (
     <div className=' item-center flex w-[100vw] justify-center  bg-[#F7F7F9]'>
       <div className='h-full  w-[80%] py-20 max-md:w-full max-md:p-2 max-md:py-10'>
